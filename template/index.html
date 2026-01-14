@@ -26,7 +26,22 @@
                     <section>
                         Slide 2.2
                     </section>
+					<section>
+                        Slide 2.3
+                    </section>
                 </section>
+				<section>
+					<section>
+						<h2>The Vlasov  Equation</h2>
+						\[ \begin{equation}
+							\frac{\partial f}{\partial t} + v \cdot \nabla_x f + a \cdot \nabla_v f = 0
+						\end{equation} \]
+					</section>
+					<section data-markdown>
+						<h2>With Markdown</h2>
+						$$ J(\theta_0,\theta_1) = \sum_{i=0} $$
+					</section>
+				</section>
 			</div>
 		</div>
 
@@ -34,6 +49,8 @@
 		<script src="reveal.js/plugin/notes/notes.js"></script>
 		<script src="reveal.js/plugin/markdown/markdown.js"></script>
 		<script src="reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="reveal.js/plugin/math/math.js"></script>
+
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -42,7 +59,7 @@
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
 			});
 		</script>
 	</body>

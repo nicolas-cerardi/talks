@@ -1,20 +1,22 @@
-const fs = require('fs');
 const pkg = require('./package.json')
+const path = require('path')
 const glob = require('glob')
 const yargs = require('yargs')
+const colors = require('colors')
 const through = require('through2');
 const qunit = require('node-qunit-puppeteer')
 
 const {rollup} = require('rollup')
-const terser = require('@rollup/plugin-terser')
+const {terser} = require('rollup-plugin-terser')
 const babel = require('@rollup/plugin-babel').default
 const commonjs = require('@rollup/plugin-commonjs')
 const resolve = require('@rollup/plugin-node-resolve').default
 const sass = require('sass')
 
 const gulp = require('gulp')
+const tap = require('gulp-tap')
 const zip = require('gulp-zip')
-const header = require('gulp-header-comment')
+const header = require('gulp-header')
 const eslint = require('gulp-eslint')
 const minify = require('gulp-clean-css')
 const connect = require('gulp-connect')
@@ -24,21 +26,13 @@ const root = yargs.argv.root || '.'
 const port = yargs.argv.port || 8000
 const host = yargs.argv.host || 'localhost'
 
-const cssLicense = `
-reveal.js ${pkg.version}
-${pkg.homepage}
-MIT licensed
-
-Copyright (C) 2011-2024 Hakim El Hattab, https://hakim.se
-`;
-
-const jsLicense = `/*!
- * reveal.js ${pkg.version}
- * ${pkg.homepage}
- * MIT licensed
- *
- * Copyright (C) 2011-2024 Hakim El Hattab, https://hakim.se
- */\n`;
+const banner = `/*!
+* reveal.js ${pkg.version}
+* ${pkg.homepage}
+* MIT licensed
+*
+* Copyright (C) 2011-2022 Hakim El Hattab, https://hakim.se
+*/\n`
 
 // Prevents warnings from opening too many test pages
 process.setMaxListeners(20);
@@ -94,7 +88,7 @@ gulp.task('js-es5', () => {
             name: 'Reveal',
             file: './dist/reveal.js',
             format: 'umd',
-            banner: jsLicense,
+            banner: banner,
             sourcemap: true
         });
     });
@@ -116,7 +110,7 @@ gulp.task('js-es6', () => {
         return bundle.write({
             file: './dist/reveal.esm.js',
             format: 'es',
-            banner: jsLicense,
+            banner: banner,
             sourcemap: true
         });
     });
@@ -169,12 +163,12 @@ function compileSass() {
     const transformedFile = vinylFile.clone();
 
     sass.render({
-        silenceDeprecations: ['legacy-js-api'],
         data: transformedFile.contents.toString(),
-        file: transformedFile.path,
+        includePaths: ['css/', 'css/theme/template']
     }, ( err, result ) => {
         if( err ) {
-            callback(err);
+            console.log( vinylFile.path );
+            console.log( err.formatted );
         }
         else {
             transformedFile.extname = '.css';
@@ -193,7 +187,7 @@ gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
     .pipe(compileSass())
     .pipe(autoprefixer())
     .pipe(minify({compatibility: 'ie9'}))
-    .pipe(header(cssLicense))
+    .pipe(header(banner))
     .pipe(gulp.dest('./dist')))
 
 gulp.task('css', gulp.parallel('css-themes', 'css-core'))
@@ -220,7 +214,7 @@ gulp.task('qunit', () => {
                 targetUrl: `http://${serverConfig.host}:${serverConfig.port}/${filename}`,
                 timeout: 20000,
                 redirectConsole: false,
-                puppeteerArgs: ['--allow-file-access-from-files', '--no-sandbox']
+                puppeteerArgs: ['--allow-file-access-from-files']
             })
                 .then(result => {
                     if( result.stats.failed > 0 ) {
@@ -275,25 +269,20 @@ gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
 gulp.task('build', gulp.parallel('js', 'css', 'plugins'))
 
-gulp.task('package', gulp.series(async () => {
+gulp.task('package', gulp.series('default', () =>
 
-    let dirs = [
+    gulp.src([
         './index.html',
         './dist/**',
+        './lib/**',
+        './images/**',
         './plugin/**',
-        './*/*.md'
-    ];
+        './**.md'
+    ]).pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
 
-    if (fs.existsSync('./lib')) dirs.push('./lib/**');
-    if (fs.existsSync('./images')) dirs.push('./images/**');
-    if (fs.existsSync('./slides')) dirs.push('./slides/**');
+))
 
-    return gulp.src( dirs, { base: './', encoding: false } )
-    .pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
-
-}))
-
-gulp.task('reload', () => gulp.src(['index.html'])
+gulp.task('reload', () => gulp.src(['*.html', '*.md'])
     .pipe(connect.reload()));
 
 gulp.task('serve', () => {
@@ -305,19 +294,14 @@ gulp.task('serve', () => {
         livereload: true
     })
 
-    const slidesRoot = root.endsWith('/') ? root : root + '/'
-    gulp.watch([
-        slidesRoot + '**/*.html',
-        slidesRoot + '**/*.md',
-        `!${slidesRoot}**/node_modules/**`, // ignore node_modules
-    ], gulp.series('reload'))
+    gulp.watch(['*.html', '*.md'], gulp.series('reload'))
 
     gulp.watch(['js/**'], gulp.series('js', 'reload', 'eslint'))
 
     gulp.watch(['plugin/**/plugin.js', 'plugin/**/*.html'], gulp.series('plugins', 'reload'))
 
     gulp.watch([
-        'css/theme/source/**/*.{sass,scss}',
+        'css/theme/source/*.{sass,scss}',
         'css/theme/template/*.{sass,scss}',
     ], gulp.series('css-themes', 'reload'))
 

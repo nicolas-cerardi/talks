@@ -48,13 +48,38 @@
                     </section>
                     <section>
 						<h3 class="slide-title">1D CDM simulation</h3>
-						<div> 
-							Phase-space distribution <br>
-							<img src="assets/pres_1DNbodyvelocity.png" style="width:60%">
+						<div class="container"> 
+							<div class="col">
+								Phase-space distribution <br>
+								<img src="assets/pres_1DNbodyvelocity.png" style="width:100%">
+							</div>
+							<div class="col">
+								<br>
+								<div class="block">
+									<div class="block-content">
+										<ul>
+											<li> Cold DM occupies a <b class="alert">1D submanifold</b> in the 1+1D phase-space</li>		
+											<li> <b class="alert">Multi-stream</b> flow after shell-crossing</li>								
+										</ul>
+									</div>
+								</div>
+							</div>
 						</div>
-                        <div class="fragment fade-up">
-							Density <br>
-							<img src="assets/pres_1DNbodydensity.png" style="width:60%">
+                        <div class="container fragment fade-up">
+							<div class="col">
+								Density <br>
+								<img src="assets/pres_1DNbodydensity.png" style="width:100%">
+							</div>
+							<div class="col">
+								<br>
+								<div class="block">
+									<div class="block-content">
+										<ul>
+											<li> <b class="alert">Singularities</b> arise at shell-crossing locations</li>							
+										</ul>
+									</div>
+								</div>
+							</div>
 						</div>
                     </section>
 					<section>
@@ -76,6 +101,43 @@
 				</section>
 			</div>
 		</div>
+
+		<style>
+			.reveal .block {
+				background-color: #191919;
+				margin-left: 20px;
+				margin-right: 20px;
+				text-align: left;
+				padding-bottom: 0.1em;
+			}
+
+			.reveal .block-title {
+				background-color: #333333;
+				padding: 8px 35px 8px 14px;
+				color: #FFAA7F;
+				font-weight: bold;
+			}
+
+			.reveal .block-content {
+				padding: 8px 35px 8px 14px;
+			}
+
+			.reveal .slide-title {
+				border-left: 5px solid white;
+				text-align: left;
+				margin-left: 20px;
+				padding-left: 20px;
+			}
+
+			.reveal .alert {
+				color: #FFAA7F;
+				font-weight: bold;
+			}
+
+			.reveal .inverted {
+				filter: invert(100%);
+			}
+		</style>
 
 		<script src="reveal.js/dist/reveal.js"></script>
 		<script src="reveal.js/plugin/notes/notes.js"></script>

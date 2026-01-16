@@ -42,63 +42,255 @@
 						</div>
 					</div>
 				</section>
+				
 				<section>
-                    <section>
-                        Slide 2.1
-                    </section>
-                    <section>
-						<h3 class="slide-title">1D CDM simulation</h3>
-						<div class="container"> 
-							<div class="col">
-								Phase-space distribution <br>
-								<img src="assets/pres_1DNbodyvelocity.png" style="width:100%">
-							</div>
-							<div class="col">
-								<br>
-								<div class="block">
-									<div class="block-content">
-										<ul>
-											<li> Cold DM occupies a <b class="alert">1D submanifold</b> in the 1+1D phase-space</li>		
-											<li> <b class="alert">Multi-stream</b> flow after shell-crossing</li>								
-										</ul>
-									</div>
+					<div class="container"> 
+						<div class="col">
+							<img src="assets/fields_evolution.gif" style="width:100%">
+						</div>
+						<div class="col fragment fade-up">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>Cold Dark Matter obeys the Cosmological <b class="alert">Vlasov Poisson equations</b>:</li>
+										$$ \frac{\partial f}{\partial t} + \vec{v} \cdot \vec{\nabla}_x f - \vec{\nabla}_x \Phi \cdot \frac{\partial f}{\partial \vec{v}} = 0 $$
+										$$ \nabla^2_x \Phi = 4\pi G a^2 \bar{\rho}(\tau) \delta(\vec{x}, \tau) $$
+									</ul>
 								</div>
 							</div>
 						</div>
-                        <div class="container fragment fade-up">
-							<div class="col">
-								Density <br>
-								<img src="assets/pres_1DNbodydensity.png" style="width:100%">
-							</div>
-							<div class="col">
-								<br>
-								<div class="block">
-									<div class="block-content">
-										<ul>
-											<li> <b class="alert">Singularities</b> arise at shell-crossing locations</li>							
-										</ul>
-									</div>
+					</div>
+
+				</section>
+				<section>
+					<h3 class="slide-title">1D CDM simulation</h3>
+					<div class="container"> 
+						<div class="col">
+							Phase-space distribution <br>
+							<img src="assets/pres_1DNbodyvelocity.png" style="width:100%">
+						</div>
+						<div class="col">
+							<br>
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li> Cold DM occupies a <b class="alert">1D submanifold</b> in the 1+1D phase-space</li>		
+										<li> <b class="alert">Multi-stream</b> flow after shell-crossing</li>								
+									</ul>
 								</div>
 							</div>
 						</div>
-                    </section>
-					<section>
-                        Slide 2.3
-                    </section>
-                </section>
+					</div>
+					<div class="container fragment fade-up">
+						<div class="col">
+							Density <br>
+							<img src="assets/pres_1DNbodydensity.png" style="width:100%">
+						</div>
+						<div class="col">
+							<br>
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li> <b class="alert">Singularities</b> arise at shell-crossing locations</li>	
+										<li> They affect the CDM dynamics (Poisson equation)</li>						
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li> N-body codes employ particles instead of a fluid</li>
+								<li> This leads to <b class="alert">discreteness errors</b> (2-body interactions)</li>
+								
+							</ul>
+							<br>
+							<br>
+							<div class="fragment"><b class="alert"> Can we find an alternative to N-body simulations ?</b></div>
+							<br>
+							<div class="fragment">
+								Since CDM occupies a low-dimensional submanifold, we can completely describe the dynamics using the <b class="alert">displacement field</b>  $\zeta(q,\tau)$: 
+								$$ x(q,\tau) = q + \zeta(q,\tau) $$		
+							</div>
+							<div class="fragment">
+								With the equation of motion:
+								$$ \frac{\partial^2 \zeta}{\partial \tau^2} 
+								+ \frac{3}{2\tau} \frac{\partial \zeta}{\partial \tau}
+								= - \frac{3}{2\tau} \frac{\partial \phi}{\partial x}$$
+							</div>
+							<div class="fragment alert">
+								Can a neural network learn the solution ?
+							</div>
+
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<div data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</div>
+					<br>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>Use a neural network to learn the solution of a PDE</li>
+								<li>Network optimisation is guided by the physical constraints (PDE + boundary)</li>
+								<li>Fully <b class="alert">unsupervised</b> $\Longrightarrow$  independent from N-body</li>
+								<li>Provides a <b class="alert">continuous representation</b> of the solution, not just particles !</b></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<div data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/network.png" style="width:100%">
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+
+									<div class="fragment">
+									PDE:
+									<ul>
+										<li><b class="alert">Numerical integration</b> allows to calculate $\delta(x)$, then $\nabla_x \phi$</li>
+										<li><b class="alert">Auto-diff</b> provides access to the remaining term of the PDE (velocity and acceleration)</li>
+									</ul>
+									</div>
+									<br>
+									<div class="fragment">
+										Boundary: 
+										<ul>
+											<li>Initial conditions given from the <b class="alert">Zel'dovich Approximation</b></li>
+											<li>Boundary conditions set to 0</li>
+										</ul>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="slide-title">Which neural architecture can we use ?</div>
+					<br>
+					<img src="assets/pres_1DNbodyacc.png" style="width: 50%;">
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>Sharp features in acceleration due to the shell-crossings.</li>
+								<li>Our first attempts with MLPs failed to captures these.</li>
+								<li class="fragment">We also tested more complexe activation functions.</li>
+								<li class="fragment">We need an architecture that provides <b class="alert">high flexibility down to the 2nd derivative</b> of the network output</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="slide-title"> Kolmogorov-Arnold Networks (KAN)</div>
+					<br>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>The <b class="alert">Kolmogorov-Arnold representation theorem</b>: any multivariate function can be approximated by a combination of (many) univariate functions</li>
+								<li>Allows an efficient parametrization of complex functions</li>
+							</ul>
+						</div>
+					</div>
+					<br>
+					<div class="container fragment fade-up">
+						<div class="col">
+							<div>Regular MLP</div>
+							<img src="assets/scheme_mlp.png" style="height:150px">
+							<br>
+							<b class="alert">[Liu+25]</b>
+							
+						</div>
+						<div class="col">
+							<div>Kolmogorov-Arnold Network</div> 
+							<img src="assets/scheme_kan.png" style="height:150px">
+							<br>
+							Nodes are combination of 3rd-order B-splines
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="slide-title"> $\Rightarrow$ Physics-Informed KANs</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/network.png" style="width:100%">
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>We use a [8, 12, 8, 1] KAN architecture (~4500 parameters).</li>
+										<li>We employ independent KANs on consecutive time chunks</li>
+									</ul>
+									$$ x(q,\tau) = q + \textcolor{cyan}{\zeta_0} 
+										+ \sum_{i=1}^{k-1} \textcolor{orange}{\zeta_i}(q, \tau_{end,i}) + \textcolor{green}{\zeta_k}(q,\tau)$$
+										
+									<div class="fragment fade-up">
+										<ul>
+											<li> <b style="color: cyan;">$ \zeta_0 $</b> is the Zel'dovich approximation</li>
+											<li> <b style="color: orange;">$ \zeta_i $</b> are the KANs trained on previous chunks</li>
+											<li> <b style="color: green;">$ \zeta_k $</b> is the KAN operating at $\tau$</li>
+										</ul>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</section>
+				
+				<section>
+					<div class="slite-title">Results</div>
+				</section>
+
+
+				<section data-auto-animate>
+					<div class="slide-title">Results : Phase-space</div>
+					<img src="assets/phase_space_pde2_310725.svg" style="width:60%">
+					<br>
+					<div class="fragment">A very good visual agreement, up to 6 shell-crossings !</div>
+				</section>
+
+				<section data-auto-animate>
+					<div class="slide-title">Results : displacement, velocity and acceleration</div>
+					<img src="assets/phase_space_pde2_310725.svg" style="width:60%">
+					<br>
+					<div class="fragment">A very good visual agreement, up to 6 shell-crossings !</div>
+				</section>
+
 
 				<section>
-					<section>
-						<h2>The Vlasov  Equation</h2>
-						\[ \begin{equation}
-							\frac{\partial f}{\partial t} + v \cdot \nabla_x f + a \cdot \nabla_v f = 0
-						\end{equation} \]
-					</section>
-					<section data-markdown>
-						<h2>With Markdown</h2>
-						$$ J(\theta_0,\theta_1) = \sum_{i=0} $$
-					</section>
+					<div class="slide-title">Conclusions</div>
+					<br>
+					<div class="container">
+						<div class="col">
+							<img src="assets/pikan_and_nbody.gif" style="width:100%">
+						</div>
+						<div class="col">
+							<a href="https://arxiv.org/abs/2512.11795v1">
+								<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2512.11795-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+							</a>
+							<br>
+							<a href="https://github.com/nicolas-cerardi/cdm-pikan">
+								<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fcdm--pikan-181717?logo=github"
+									class="plain"
+									style="height:20px; vertical-align:middle;">
+							</a>
+
+						</div>
+					</div>
+					
+
 				</section>
+
 			</div>
 		</div>
 

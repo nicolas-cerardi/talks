@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Template Presentation</title>
+		<title>SKACHWinter2026_CDMPIKAN</title>
 		<meta name="description" content="Simulating CDM with Physics-Informed Kolmogorov-Arnold Networks">
 		<meta name="author" content="Nicolas Cerardi">
 
@@ -129,7 +129,7 @@
 					</div>
 				</section>
 				<section data-auto-animate>
-					<div data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</div>
+					<h3 data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</h3>
 					<br>
 					<div class="block">
 						<div class="block-content">
@@ -143,7 +143,7 @@
 					</div>
 				</section>
 				<section data-auto-animate>
-					<div data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</div>
+					<h3 data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</h3>
 					<div class="container">
 						<div class="col">
 							<img src="assets/network.png" style="width:100%">
@@ -174,7 +174,7 @@
 					</div>
 				</section>
 				<section>
-					<div class="slide-title">Which neural architecture can we use ?</div>
+					<h3 class="slide-title">Which neural architecture can we use ?</h3>
 					<br>
 					<img src="assets/pres_1DNbodyacc.png" style="width: 50%;">
 					<div class="block">
@@ -189,7 +189,7 @@
 					</div>
 				</section>
 				<section>
-					<div class="slide-title"> Kolmogorov-Arnold Networks (KAN)</div>
+					<h3 class="slide-title"> Kolmogorov-Arnold Networks (KANs)</h3>
 					<br>
 					<div class="block">
 						<div class="block-content">
@@ -217,7 +217,7 @@
 					</div>
 				</section>
 				<section>
-					<div class="slide-title"> $\Rightarrow$ Physics-Informed KANs</div>
+					<h3 class="slide-title"> $\Rightarrow$ Physics-Informed KANs (PIKANs!)</h3>
 					<div class="container">
 						<div class="col">
 							<img src="assets/network.png" style="width:100%">
@@ -248,43 +248,121 @@
 				</section>
 				
 				<section>
-					<div class="slite-title">Results</div>
+					<h3 class="slite-title">Results</h3>
 				</section>
 
 
 				<section data-auto-animate>
-					<div class="slide-title">Results : Phase-space</div>
+					<h3 class="slide-title">Results : Phase-space</h3>
 					<img src="assets/phase_space_pde2_310725.svg" style="width:60%">
 					<br>
 					<div class="fragment">A very good visual agreement, up to 6 shell-crossings !</div>
 				</section>
-
-				<section data-auto-animate>
-					<div class="slide-title">Results : displacement, velocity and acceleration</div>
-					<img src="assets/phase_space_pde2_310725.svg" style="width:60%">
-					<br>
-					<div class="fragment">A very good visual agreement, up to 6 shell-crossings !</div>
-				</section>
-
 
 				<section>
-					<div class="slide-title">Conclusions</div>
+					<h3 class="slide-title">Results : displacement, velocity and acceleration</h3>
+					<img src="assets/residuals_xvacc_pde2_140825.svg" style="width:90%">
+					<br>
+					<div> Errors w.r.t a high resolution N-body simulation</div>
+					<div class="fragment">Error is less than 2% on the displacement</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Results : density profiles</h3>
+					<div class="container"> 
+						<div class="col">
+							<img src="assets/profile_pde2_041225b.svg" style="width:90%">
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>Density profiles are in good agreement</li>
+										<li class="fragment">In the core, N-body profiles are noisy</li>
+										<li class="fragment">The PIKAN provides a smoother solution (too much?)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<br>
+				</section>
+
+				<section>
+					<div class="block">
+						<div class="block-title">
+							Warnings
+						</div>
+						<div class="block-content">
+							<ul>
+								<li class="fragment">Training time is quite long (several hours per time chunk on a single GPU)</li>
+								<li class="fragment">While the learnt representation is defined continuously, we still need to sample points for the numerical integration of $ \nabla_x\phi $</li>
+								<li class="fragment"> As $ \tau $ increases, the target field gets more complex (more shell crossings), but the architecture is fixed</li>
+								<li class="fragment"> (for now a 1D single halo collapse)</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">What else can we do with such a tool ?</h3>
+					<br>
+					<ul>
+						<li>Unlike a N-body sim that advances timestep per timestep, in the PINN framework the optimisation is performed <b class="alert">simultaneously over time</b>.</li>
+						<li>$\Rightarrow$ We can set the "initial conditions" at any $\tau$</li>
+					</ul>
+				</section>
+				<section>
+					<h3 class="slide-title">Results : Backward simulation</h3>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>Test case: reverse time through 2 shell crossings.</li>
+								<li>Start from high-resolution N-body data at $\tau_{end}$, optimise to retrieve the underlying initial conditions. </li>
+							</ul>
+						</div>
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/phase_space_reverse_zvacc_070825.svg" style="width:80%">
+							<br>
+							Input: $ (\zeta, \dot{\zeta}, \ddot{\zeta})$
+						</div>
+						<div class="col">
+							<img src="assets/phase_space_reverse_zvdens_070825.svg" style="width:80%">
+							<br>
+							Input: $ (\zeta, \dot{\zeta}, \delta(x))$
+						</div>
+					</div>
+					
+				</section>
+				<section>
+					<h3 class="slide-title">Conclusions</h3>
 					<br>
 					<div class="container">
 						<div class="col">
 							<img src="assets/pikan_and_nbody.gif" style="width:100%">
-						</div>
-						<div class="col">
-							<a href="https://arxiv.org/abs/2512.11795v1">
+							[Cerardi, Tolley and Mishra, MNRAS, 2025]<a href="https://arxiv.org/abs/2512.11795v1">
 								<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2512.11795-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
 							</a>
-							<br>
 							<a href="https://github.com/nicolas-cerardi/cdm-pikan">
 								<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fcdm--pikan-181717?logo=github"
 									class="plain"
 									style="height:20px; vertical-align:middle;">
 							</a>
-
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>We presented a new method to simulate CDM, <b class="alert">independent from N-body simulations.</b></li>
+										<li>PIKANs allows a <b class="alert">continuous and differentiable</b> modelling of the dynamics.</li>
+										<li>It is possible to run the simulation backward to <b class="alert">retrieve the initial conditions.</b></li>
+										<li>Future work: higher dimensions, complex ICs...</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 					

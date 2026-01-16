@@ -1,0 +1,430 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>SKACHWinter2026_CDMPIKAN</title>
+		<meta name="description" content="Simulating CDM with Physics-Informed Kolmogorov-Arnold Networks">
+		<meta name="author" content="Nicolas Cerardi">
+
+		<link rel="stylesheet" href="reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div>
+						<h2>
+							Simulating Cold Dark Matter with Physics-Informed Kolmogorov-Arnold Networks
+							<br>
+						<br>
+						<br>
+						<br>
+						</h2>
+						<h4>
+							SKACH Winter Days, CSCS, Lugano, January 2026
+						</h4>
+					</div>
+					
+					<div> Nicolas Cerardi</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/logo_epfl.png" class="plain" height="50"></img>
+						</div>
+						<div class="col">
+							<img src="assets/logo_SKACH.png" class="plain" height="80"></img>
+						</div>
+					</div>
+				</section>
+				
+				<section>
+					<div class="container"> 
+						<div class="col">
+							<img src="assets/fields_evolution.gif" style="width:100%">
+						</div>
+						<div class="col fragment fade-up">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>Cold Dark Matter obeys the Cosmological <b class="alert">Vlasov Poisson equations</b>:</li>
+										$$ \frac{\partial f}{\partial t} + \vec{v} \cdot \vec{\nabla}_x f - \vec{\nabla}_x \Phi \cdot \frac{\partial f}{\partial \vec{v}} = 0 $$
+										$$ \nabla^2_x \Phi = 4\pi G a^2 \bar{\rho}(\tau) \delta(\vec{x}, \tau) $$
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</section>
+				<section>
+					<h3 class="slide-title">1D CDM simulation</h3>
+					<div class="container"> 
+						<div class="col">
+							Phase-space distribution <br>
+							<img src="assets/pres_1DNbodyvelocity.png" style="width:100%">
+						</div>
+						<div class="col">
+							<br>
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li> Cold DM occupies a <b class="alert">1D submanifold</b> in the 1+1D phase-space</li>		
+										<li> <b class="alert">Multi-stream</b> flow after shell-crossing</li>								
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container fragment fade-up">
+						<div class="col">
+							Density <br>
+							<img src="assets/pres_1DNbodydensity.png" style="width:100%">
+						</div>
+						<div class="col">
+							<br>
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li> <b class="alert">Singularities</b> arise at shell-crossing locations</li>	
+										<li> They affect the CDM dynamics (Poisson equation)</li>						
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li> N-body codes employ particles instead of a fluid</li>
+								<li> This leads to <b class="alert">discreteness errors</b> (2-body interactions)</li>
+								
+							</ul>
+							<br>
+							<br>
+							<div class="fragment"><b class="alert"> Can we find an alternative to N-body simulations ?</b></div>
+							<br>
+							<div class="fragment">
+								Since CDM occupies a low-dimensional submanifold, we can completely describe the dynamics using the <b class="alert">displacement field</b>  $\zeta(q,\tau)$: 
+								$$ x(q,\tau) = q + \zeta(q,\tau) $$		
+							</div>
+							<div class="fragment">
+								With the equation of motion:
+								$$ \frac{\partial^2 \zeta}{\partial \tau^2} 
+								+ \frac{3}{2\tau} \frac{\partial \zeta}{\partial \tau}
+								= - \frac{3}{2\tau} \frac{\partial \phi}{\partial x}$$
+							</div>
+							<div class="fragment alert">
+								Can a neural network learn the solution ?
+							</div>
+
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</h3>
+					<br>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>Use a neural network to learn the solution of a PDE</li>
+								<li>Network optimisation is guided by the physical constraints (PDE + boundary)</li>
+								<li>Fully <b class="alert">unsupervised</b> $\Longrightarrow$  independent from N-body</li>
+								<li>Provides a <b class="alert">continuous representation</b> of the solution, not just particles !</b></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</h3>
+					<div class="container">
+						<div class="col">
+							<img src="assets/network.png" style="width:100%">
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+
+									<div class="fragment">
+									PDE:
+									<ul>
+										<li><b class="alert">Numerical integration</b> allows to calculate $\delta(x)$, then $\nabla_x \phi$</li>
+										<li><b class="alert">Auto-diff</b> provides access to the remaining term of the PDE (velocity and acceleration)</li>
+									</ul>
+									</div>
+									<br>
+									<div class="fragment">
+										Boundary: 
+										<ul>
+											<li>Initial conditions given from the <b class="alert">Zel'dovich Approximation</b></li>
+											<li>Boundary conditions set to 0</li>
+										</ul>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 class="slide-title">Which neural architecture can we use ?</h3>
+					<br>
+					<img src="assets/pres_1DNbodyacc.png" style="width: 50%;">
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>Sharp features in acceleration due to the shell-crossings.</li>
+								<li>Our first attempts with MLPs failed to captures these.</li>
+								<li class="fragment">We also tested more complexe activation functions.</li>
+								<li class="fragment">We need an architecture that provides <b class="alert">high flexibility down to the 2nd derivative</b> of the network output</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 class="slide-title"> Kolmogorov-Arnold Networks (KANs)</h3>
+					<br>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>The <b class="alert">Kolmogorov-Arnold representation theorem</b>: any multivariate function can be approximated by a combination of (many) univariate functions</li>
+								<li>Allows an efficient parametrization of complex functions</li>
+							</ul>
+						</div>
+					</div>
+					<br>
+					<div class="container fragment fade-up">
+						<div class="col">
+							<div>Regular MLP</div>
+							<img src="assets/scheme_mlp.png" style="height:150px">
+							<br>
+							<b class="alert">[Liu+25]</b>
+							
+						</div>
+						<div class="col">
+							<div>Kolmogorov-Arnold Network</div> 
+							<img src="assets/scheme_kan.png" style="height:150px">
+							<br>
+							Nodes are combination of 3rd-order B-splines
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 class="slide-title"> $\Rightarrow$ Physics-Informed KANs (PIKANs!)</h3>
+					<div class="container">
+						<div class="col">
+							<img src="assets/network.png" style="width:100%">
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>We use a [8, 12, 8, 1] KAN architecture (~4500 parameters).</li>
+										<li>We employ independent KANs on consecutive time chunks</li>
+									</ul>
+									$$ x(q,\tau) = q + \textcolor{cyan}{\zeta_0} 
+										+ \sum_{i=1}^{k-1} \textcolor{orange}{\zeta_i}(q, \tau_{end,i}) + \textcolor{green}{\zeta_k}(q,\tau)$$
+										
+									<div class="fragment fade-up">
+										<ul>
+											<li> <b style="color: cyan;">$ \zeta_0 $</b> is the Zel'dovich approximation</li>
+											<li> <b style="color: orange;">$ \zeta_i $</b> are the KANs trained on previous chunks</li>
+											<li> <b style="color: green;">$ \zeta_k $</b> is the KAN operating at $\tau$</li>
+										</ul>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</section>
+				
+				<section>
+					<h3 class="slite-title">Results</h3>
+				</section>
+
+
+				<section data-auto-animate>
+					<h3 class="slide-title">Results : Phase-space</h3>
+					<img src="assets/phase_space_pde2_310725.svg" style="width:60%">
+					<br>
+					<div class="fragment">A very good visual agreement, up to 6 shell-crossings !</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Results : displacement, velocity and acceleration</h3>
+					<img src="assets/residuals_xvacc_pde2_140825.svg" style="width:90%">
+					<br>
+					<div> Errors w.r.t a high resolution N-body simulation</div>
+					<div class="fragment">Error is less than 2% on the displacement</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Results : density profiles</h3>
+					<div class="container"> 
+						<div class="col">
+							<img src="assets/profile_pde2_041225b.svg" style="width:90%">
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>Density profiles are in good agreement</li>
+										<li class="fragment">In the core, N-body profiles are noisy</li>
+										<li class="fragment">The PIKAN provides a smoother solution (too much?)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<br>
+				</section>
+
+				<section>
+					<div class="block">
+						<div class="block-title">
+							Warnings
+						</div>
+						<div class="block-content">
+							<ul>
+								<li class="fragment">Training time is quite long (several hours per time chunk on a single GPU)</li>
+								<li class="fragment">While the learnt representation is defined continuously, we still need to sample points for the numerical integration of $ \nabla_x\phi $</li>
+								<li class="fragment"> As $ \tau $ increases, the target field gets more complex (more shell crossings), but the architecture is fixed</li>
+								<li class="fragment"> (for now a 1D single halo collapse)</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">What else can we do with such a tool ?</h3>
+					<br>
+					<ul>
+						<li>Unlike a N-body sim that advances timestep per timestep, in the PINN framework the optimisation is performed <b class="alert">simultaneously over time</b>.</li>
+						<li>$\Rightarrow$ We can set the "initial conditions" at any $\tau$</li>
+					</ul>
+				</section>
+				<section>
+					<h3 class="slide-title">Results : Backward simulation</h3>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>Test case: reverse time through 2 shell crossings.</li>
+								<li>Start from high-resolution N-body data at $\tau_{end}$, optimise to retrieve the underlying initial conditions. </li>
+							</ul>
+						</div>
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/phase_space_reverse_zvacc_070825.svg" style="width:80%">
+							<br>
+							Input: $ (\zeta, \dot{\zeta}, \ddot{\zeta})$
+						</div>
+						<div class="col">
+							<img src="assets/phase_space_reverse_zvdens_070825.svg" style="width:80%">
+							<br>
+							Input: $ (\zeta, \dot{\zeta}, \delta(x))$
+						</div>
+					</div>
+					
+				</section>
+				<section>
+					<h3 class="slide-title">Conclusions</h3>
+					<br>
+					<div class="container">
+						<div class="col">
+							<img src="assets/pikan_and_nbody.gif" style="width:100%">
+							[Cerardi, Tolley and Mishra, MNRAS, 2025]<a href="https://arxiv.org/abs/2512.11795v1">
+								<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2512.11795-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+							</a>
+							<a href="https://github.com/nicolas-cerardi/cdm-pikan">
+								<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fcdm--pikan-181717?logo=github"
+									class="plain"
+									style="height:20px; vertical-align:middle;">
+							</a>
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-content">
+									<ul>
+										<li>We presented a new method to simulate CDM, <b class="alert">independent from N-body simulations.</b></li>
+										<li>PIKANs allows a <b class="alert">continuous and differentiable</b> modelling of the dynamics.</li>
+										<li>It is possible to run the simulation backward to <b class="alert">retrieve the initial conditions.</b></li>
+										<li>Future work: higher dimensions, complex ICs...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+
+				</section>
+
+			</div>
+		</div>
+
+		<style>
+			.reveal .block {
+				background-color: #191919;
+				margin-left: 20px;
+				margin-right: 20px;
+				text-align: left;
+				padding-bottom: 0.1em;
+			}
+
+			.reveal .block-title {
+				background-color: #333333;
+				padding: 8px 35px 8px 14px;
+				color: #FFAA7F;
+				font-weight: bold;
+			}
+
+			.reveal .block-content {
+				padding: 8px 35px 8px 14px;
+			}
+
+			.reveal .slide-title {
+				border-left: 5px solid white;
+				text-align: left;
+				margin-left: 20px;
+				padding-left: 20px;
+			}
+
+			.reveal .alert {
+				color: #FFAA7F;
+				font-weight: bold;
+			}
+
+			.reveal .inverted {
+				filter: invert(100%);
+			}
+		</style>
+
+		<script src="reveal.js/dist/reveal.js"></script>
+		<script src="reveal.js/plugin/notes/notes.js"></script>
+		<script src="reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="reveal.js/plugin/math/math.js"></script>
+
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+			});
+		</script>
+	</body>
+</html>

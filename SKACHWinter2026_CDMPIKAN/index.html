@@ -33,12 +33,14 @@
 					</div>
 					
 					<div> Nicolas Cerardi</div>
+					<div>with Emma Tolley & Ashutosh Mishra</div>
+					<br>
 					<div class="container">
 						<div class="col">
 							<img src="assets/logo_epfl.png" class="plain" height="50"></img>
 						</div>
 						<div class="col">
-							<img src="assets/Logo_SKACH.png" class="plain" height="80"></img>
+							<img src="assets/Logo_SKACH.png" class="plain" height="70"></img>
 						</div>
 					</div>
 				</section>
@@ -50,6 +52,9 @@
 						</div>
 						<div class="col fragment fade-up">
 							<div class="block">
+								<div class="block-title">
+									The dynamics of CDM
+								</div>
 								<div class="block-content">
 									<ul>
 										<li>Cold Dark Matter obeys the Cosmological <b class="alert">Vlasov Poisson equations</b>:</li>
@@ -71,14 +76,14 @@
 						</div>
 						<div class="col">
 							<br>
-							<div class="block">
-								<div class="block-content">
-									<ul>
-										<li> Cold DM occupies a <b class="alert">1D submanifold</b> in the 1+1D phase-space</li>		
-										<li> <b class="alert">Multi-stream</b> flow after shell-crossing</li>								
-									</ul>
-								</div>
-							</div>
+							
+								
+							<ul>
+								<li> Cold DM occupies a <b class="alert">1D submanifold</b> in the 1+1D phase-space</li>		
+								<li> <b class="alert">Multi-stream</b> flow after shell-crossing</li>								
+							</ul>
+								
+							
 						</div>
 					</div>
 					<div class="container fragment fade-up">
@@ -88,19 +93,20 @@
 						</div>
 						<div class="col">
 							<br>
-							<div class="block">
-								<div class="block-content">
-									<ul>
-										<li> <b class="alert">Singularities</b> arise at shell-crossing locations</li>	
-										<li> They affect the CDM dynamics (Poisson equation)</li>						
-									</ul>
-								</div>
-							</div>
+							
+							<ul>
+								<li> <b class="alert">Singularities</b> arise at shell-crossing locations</li>	
+								<li> They affect the CDM dynamics (Poisson equation)</li>						
+							</ul>
+							
 						</div>
 					</div>
 				</section>
 				<section>
 					<div class="block">
+						<div class="block-title">
+							Routes to CDM simulations
+						</div>
 						<div class="block-content">
 							<ul>
 								<li> N-body codes employ particles instead of a fluid</li>
@@ -132,6 +138,9 @@
 					<h3 data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</h3>
 					<br>
 					<div class="block">
+						<div class="block-title">
+							PINNs: simulations seen as an optimisation problem
+						</div>
 						<div class="block-content">
 							<ul>
 								<li>Use a neural network to learn the solution of a PDE</li>
@@ -149,27 +158,23 @@
 							<img src="assets/network.png" style="width:100%">
 						</div>
 						<div class="col">
-							<div class="block">
-								<div class="block-content">
 
-									<div class="fragment">
-									PDE:
-									<ul>
-										<li><b class="alert">Numerical integration</b> allows to calculate $\delta(x)$, then $\nabla_x \phi$</li>
-										<li><b class="alert">Auto-diff</b> provides access to the remaining term of the PDE (velocity and acceleration)</li>
-									</ul>
-									</div>
-									<br>
-									<div class="fragment">
-										Boundary: 
-										<ul>
-											<li>Initial conditions given from the <b class="alert">Zel'dovich Approximation</b></li>
-											<li>Boundary conditions set to 0</li>
-										</ul>
-									</div>
-									
-								</div>
+							<div class="fragment">
+							PDE
+							<ul>
+								<li><b class="alert">Numerical integration</b> allows to calculate $\delta(x)$, then $\nabla_x \phi$</li>
+								<li><b class="alert">Auto-diff</b> provides access to the remaining term of the PDE (velocity and acceleration)</li>
+							</ul>
 							</div>
+							<br>
+							<div class="fragment">
+								Boundary 
+								<ul>
+									<li>Initial conditions given from the <b class="alert">Zel'dovich Approximation</b></li>
+									<li>Boundary conditions set to 0</li>
+								</ul>
+							</div>
+									
 						</div>
 					</div>
 				</section>
@@ -177,28 +182,20 @@
 					<h3 class="slide-title">Which neural architecture can we use ?</h3>
 					<br>
 					<img src="assets/pres_1DNbodyacc.png" style="width: 50%;">
-					<div class="block">
-						<div class="block-content">
-							<ul>
-								<li>Sharp features in acceleration due to the shell-crossings.</li>
-								<li>Our first attempts with MLPs failed to captures these.</li>
-								<li class="fragment">We also tested more complexe activation functions.</li>
-								<li class="fragment">We need an architecture that provides <b class="alert">high flexibility down to the 2nd derivative</b> of the network output</li>
-							</ul>
-						</div>
-					</div>
+					<ul>
+						<li>Sharp features in acceleration due to the shell-crossings.</li>
+						<li>Our first attempts with MLPs failed to captures these.</li>
+						<li class="fragment">We also tested more complexe activation functions.</li>
+						<li class="fragment">We need an architecture that provides <b class="alert">high flexibility down to the 2nd derivative</b> of the network output</li>
+					</ul>
 				</section>
 				<section>
 					<h3 class="slide-title"> Kolmogorov-Arnold Networks (KANs)</h3>
 					<br>
-					<div class="block">
-						<div class="block-content">
-							<ul>
-								<li>The <b class="alert">Kolmogorov-Arnold representation theorem</b>: any multivariate function can be approximated by a combination of (many) univariate functions</li>
-								<li>Allows an efficient parametrization of complex functions</li>
-							</ul>
-						</div>
-					</div>
+					<ul>
+						<li>The <b class="alert">Kolmogorov-Arnold representation theorem</b>: any multivariate function can be approximated by a combination of (many) univariate functions</li>
+						<li>Allows an efficient parametrization of complex functions</li>
+					</ul>
 					<br>
 					<div class="container fragment fade-up">
 						<div class="col">
@@ -224,6 +221,9 @@
 						</div>
 						<div class="col">
 							<div class="block">
+								<div class="block-title">
+									PIKAN implementation
+								</div>
 								<div class="block-content">
 									<ul>
 										<li>We use a [8, 12, 8, 1] KAN architecture (~4500 parameters).</li>
@@ -274,15 +274,12 @@
 							<img src="assets/profile_pde2_041225b.svg" style="width:90%">
 						</div>
 						<div class="col">
-							<div class="block">
-								<div class="block-content">
-									<ul>
-										<li>Density profiles are in good agreement</li>
-										<li class="fragment">In the core, N-body profiles are noisy</li>
-										<li class="fragment">The PIKAN provides a smoother solution (too much?)</li>
-									</ul>
-								</div>
-							</div>
+							
+						<ul>
+							<li>Density profiles are in good agreement</li>
+							<li class="fragment">In the core, N-body profiles are noisy</li>
+							<li class="fragment">The PIKAN provides a smoother solution (too much?)</li>
+						</ul>
 						</div>
 					</div>
 					
@@ -292,13 +289,13 @@
 				<section>
 					<div class="block">
 						<div class="block-title">
-							Warnings
+							Caveats
 						</div>
 						<div class="block-content">
 							<ul>
 								<li class="fragment">Training time is quite long (several hours per time chunk on a single GPU)</li>
 								<li class="fragment">While the learnt representation is defined continuously, we still need to sample points for the numerical integration of $ \nabla_x\phi $</li>
-								<li class="fragment"> As $ \tau $ increases, the target field gets more complex (more shell crossings), but the architecture is fixed</li>
+								<!-- li class="fragment"> As $ \tau $ increases, the target field gets more complex (more shell crossings), but the architecture is fixed</li -->
 								<li class="fragment"> (for now a 1D single halo collapse)</li>
 							</ul>
 						</div>
@@ -338,12 +335,13 @@
 					
 				</section>
 				<section>
-					<h3 class="slide-title">Conclusions</h3>
+					<h3 class="slide-title">Thanks for your attention !</h3>
 					<br>
 					<div class="container">
 						<div class="col">
 							<img src="assets/pikan_and_nbody.gif" style="width:100%">
-							[Cerardi, Tolley and Mishra, MNRAS, 2025]<a href="https://arxiv.org/abs/2512.11795v1">
+							<div style="font-size: 20px;"> [Cerardi, Tolley and Mishra, MNRAS, 2025] </div>
+							<a href="https://arxiv.org/abs/2512.11795v1">
 								<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2512.11795-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
 							</a>
 							<a href="https://github.com/nicolas-cerardi/cdm-pikan">
@@ -354,12 +352,15 @@
 						</div>
 						<div class="col">
 							<div class="block">
+								<div class="block-title">
+									Takeaways
+								</div>
 								<div class="block-content">
 									<ul>
 										<li>We presented a new method to simulate CDM, <b class="alert">independent from N-body simulations.</b></li>
-										<li>PIKANs allows a <b class="alert">continuous and differentiable</b> modelling of the dynamics.</li>
-										<li>It is possible to run the simulation backward to <b class="alert">retrieve the initial conditions.</b></li>
-										<li>Future work: higher dimensions, complex ICs...</li>
+										<li class="fragment">PIKANs allows a <b class="alert">continuous and differentiable</b> modelling of the dynamics.</li>
+										<li class="fragment">It is possible to run the simulation backward to <b class="alert">retrieve the initial conditions.</b></li>
+										<li class="fragment">Future work: higher dimensions, complex ICs...</li>
 									</ul>
 								</div>
 							</div>

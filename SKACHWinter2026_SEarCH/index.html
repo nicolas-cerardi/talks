@@ -159,7 +159,7 @@
 						</div>
 						<div class="block-content">
 							<ul>
-								<li>Give details our SBI strategy</li>
+								<li>Give details on our SBI strategy</li>
 								<li>Go beyond the challenge with <b class="alert">higher-order statistics</b></li>
 								<li>Provide <b class="alert">statistically robust</b> results</li>		
 							</ul>
@@ -180,7 +180,7 @@
 							<ul>
 								<li> $ x_{HI} $ is an output of the simulation: we do not directly sample it</li>
 								<li class="fragment" data-fragment-index="1"> Prior on $ x_{HI} $ is <b class="alert">implicit</b> and <b class="alert">non-trivial</b></li>
-								<li class="fragment" data-fragment-index="2"> <b class="alert"> Direct neural posterior estimation </b> [Papamakarios+18] is the way to go ! </li>
+								<li class="fragment" data-fragment-index="2"> <b class="alert"> Direct neural posterior estimation </b> is the way to go ! </li>
 							</ul>
 							<div class="fragment" data-fragment-index="2"> 
 								\[\begin{aligned}
@@ -194,21 +194,68 @@
 					</div>
 				</section>
 
-				<section>
+				<!--section>
 					<div class="slide-title">
 						Making the training set
 					</div>
-				</section>
+					<div class="container">
+						<div class="col">
+							<ul>
+								<li> Our model varies 6 input astrophysical parameters </li>
+								<li> Reject the extreme cases $ \Rightarrow $ simplifies the $ x_{HI} $ prior </li>
+								<li> Two levels of SKA Low-like noise: 100h & 1000h</li>
+							</ul>
+						</div>
+						<div class="col">
+							<img class="inverted" src="assets/params_distrib_SBISEarCH.png" style="height: 450px;">
+						</div>
 
-				<section>
-					<div class="slide-title">
-						3 selected reference scenarios
 					</div>
-				</section>
+					
+				</section-->
 
 				<section>
 					<div class="slide-title">
-						Always more statistics !
+						More statistics !
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/SEarCHSBI_pipeline.png" style="height: 450px;">
+							<br> 
+							We compute several kinds of statistics $ t $ from the 21cm cubes
+						</div>
+						<div class="col">
+							
+							<div class="alert fragment fade-up" data-fragment-index="1"> 2pt statistics </div>
+							<div class="container fragment fade-up" data-fragment-index="1">
+								
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_1DPS.png" style="height: 150px;">
+									<div> 1D Power Spectrum </div>
+								</div>
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_2DPS.png" style="height: 150px;">
+									<div> 2D Power Spectrum </div>
+								</div>
+							</div>
+							<br>
+
+							<div class="alert fragment fade-up" data-fragment-index="2"> Higher-order statistics </div>
+
+							<div class="container fragment fade-up" data-fragment-index="2">
+								
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_Bispec.png" style="height: 150px;">
+									<div> Bispectrum (equilateral & squeezed)</div>
+								</div>
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_Betti.png" style="height: 150px;">
+									<div> Betti numbers (topological invariant) <br> </div>
+								</div>
+							</div>
+							<br>
+							<b class="fragment fade-up" data-fragment-index="3"> + combinations of these metrics </b>
+						</div>
 					</div>
 				</section>
 
@@ -222,6 +269,36 @@
 					<div class="slide-title">
 						Can you trust me ?
 					</div>
+					<div class="container">
+						<div class="col">
+							<div style="font-style: italic; text-align: left;"> SBI studies should always provide robust statistical validation of the learnt posteriors </div>
+							<ul>
+								<li> For each case we train 20+ models to check for the stability of our approach </li>
+								<li> We systematically perform coverage tests and and select the best model for each case </li>
+							</ul>
+						</div>
+						<div class="col">
+							<img src="assets/TARPS_examples_051112.svg" style="height: 400px;">
+							<div style="font-size: 18px;"> Test of Accuracy with Random Points (TARP) runs on the validation set for different cases </div>
+						</div>
+					</div>
+					
+				</section>
+
+				<section>
+					<div class="slide-title">
+						3 reference scenarios
+					</div>
+					<div class="container">
+						<div class="col">
+							<ul>
+								<li> We select from the test set 3 reference mocks: `Early`, `Fiducial` and `Late` </li>
+							</ul>
+						</div>
+						<div class="col">
+							<img src="assets/EoR_history_3models.svg" style="height: 400px;">
+						</div>
+					</div>
 				</section>
 
 				<section>
@@ -234,12 +311,19 @@
 					<div class="slide-title">
 						Results: global comparison
 					</div>
+					<img src="assets/FoMs_diff_stats_071125.svg" style="height: 400px;">
 				</section>
 
 				<section>
 					<div class="slide-title">
-						Results: the relative strength of each statistic.
+						Results: the relative strength of each statistic
 					</div>
+					<img src="assets/FoM_ratio_with_xHI.svg" style="height: 400px;">
+					<ul>
+						<li> Betti numbers are more informative towards the end of EoR </li>
+						<li> Power spectrum is more constraining towards the beginning of EoR </li>
+						<li> Bispectrum's mild contribution is mainly located early in the EoR </li>
+					</ul>
 				</section>
 
 				<section>

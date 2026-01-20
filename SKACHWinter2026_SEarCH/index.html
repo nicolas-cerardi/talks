@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Template Presentation</title>
-		<meta name="description" content="A basic template to start a new talk">
+		<title>SEarCH SBI 21cm</title>
+		<meta name="description" content="Implicit inference of the reionization history with higher-order statistics of the 21-cm signal">
 		<meta name="author" content="Nicolas Cerardi">
 
 		<link rel="stylesheet" href="reveal.js/dist/reset.css">
@@ -18,32 +18,276 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
 				<section>
-                    <section>
-                        Slide 2.1
-                    </section>
-                    <section>
-                        Slide 2.2
-                    </section>
-					<section>
-                        Slide 2.3
-                    </section>
-                </section>
-				<section>
-					<section>
-						<h2>The Vlasov  Equation</h2>
-						\[ \begin{equation}
-							\frac{\partial f}{\partial t} + v \cdot \nabla_x f + a \cdot \nabla_v f = 0
-						\end{equation} \]
-					</section>
-					<section data-markdown>
-						<h2>With Markdown</h2>
-						$$ J(\theta_0,\theta_1) = \sum_{i=0} $$
-					</section>
+					<div>
+						<h2>
+							Implicit inference of the reionization history with higher-order statistics of the 21-cm signal
+						<br>
+						<br>
+						</h2>
+						<h4>
+							SKACH Winter Days, CSCS, Lugano, January 2026
+						</h4>
+					</div>
+					
+					<div>Nicolas Cerardi</div>
+					<div>On behalf of the <b class="alert">SEarCH</b> team: Sambit Giri, Michele Bianco, Davide Piras, Emmanuel de Salis, Massimo de Santis, Merve Selcuk-Simsek, Philipp Denzel, Kelley Hess, Carmen Toribio, Franz Kirsten & Hatem Ghorbel </div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/logo_epfl.png" class="plain" height="50"></img>
+						</div>
+						<div class="col">
+							<img src="assets/logo_Search.png" class="plain" height="160"></img>
+						</div>
+						<div class="col">
+							<img src="assets/Logo_SKACH.png" class="plain" height="80"></img>
+						</div>
+					</div>
 				</section>
+
+				<section>
+					<div class="slide-title">
+						If you missed the last semester of SEarCH...
+					</div>
+					<br>
+					<div class="container">
+						<div class="col">
+							<ul>
+								<li> Participated to the <b class="alert">SKA Data Challenge 3b: Inference</b></li>
+								<li> Goal: infer the <b class="alert">neutral fraction</b> $ x_{HI} $ in SKA-Low mocks at three different $ z $ to constrain the Epoch of Reionisation </li>
+							</ul>
+							<img src="assets/EoR_ESA.png" style="height: 300px;">
+						</div>
+						<div class="col">
+							<img src="assets/SDC3b_pipeline.png" style="height: 450px;">
+						</div>
+					</div>
+				</section>
+				
+				<section>
+					<div class="slide-title">
+						If you missed the last semester of SEarCH...
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/Rankings_SDC3b_PS2.png" style="height: 400px">
+						</div>
+						<div class="col">
+							<img src="assets/figure_SDC3b_teamcomp_PS2.jpg" style="height: 220px">
+							<ul>
+								<li> Obtained great results on the PS2 data 🎉 </li>
+							</ul>
+						</div>
+						
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						If you missed the last semester of SEarCH...
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/Rankings_SDC3b_PS1.png" style="height: 400px">
+						</div>
+						<div class="col fragment fade-up">
+							<ul>
+								<li> But not ranked on the PS1 data </li>
+							</ul>
+							<img data-src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTB3NHV4YnlyMDA4eTU2dnFqbnNydTZmM25tdDNiZ2gzMTRmajBvYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aTskHEUdgCQAXde/giphy.gif" style="height: 220px;">
+						</div>
+						
+					</div>
+					
+				</section>
+
+				<section>
+					<div class="slide-title">
+						How did we tackle this problem ?
+					</div>
+					<br>
+					<div class="container">
+						
+						<div class="col">
+							<div class="block">
+								<div class="block-title">
+									Our strategy
+								</div>
+								<div class="block-content">
+									<ol>
+										<li>
+											Created a large dataset of ~16000 SKA-Low mocks
+											<ul>
+												<li> Included instrumental noise but no foregrounds</li>
+											</ul>
+										</li> 
+										<br>
+										<li>
+											Trained 2 independent DL approaches
+											<ul>
+												<li> Regression task on $ x_{HI} $ with deep CNNs <br>
+													<div style="font-size: 20px;">[De Salis+25]
+													<a href="https://arxiv.org/abs/2509.22018">
+														<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2509.22018-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+													</a>
+													</div>
+												</li>
+												<li class="fragment fade-up" data-fragment-index="1"> Bayesian inference with <b class="alert">Simulation-based Inference (SBI)</b></li>
+											</ul>
+										</li>
+									</ol>
+								</div>
+							</div>
+							
+							
+						</div>
+						<div class="col">
+							<img src="assets/base_SBI_scheme.png" class="fragment fade-up" data-fragment-index="1" style="height: 400px;">
+							<div style="font-size: 18px;" class="fragment fade-up" data-fragment-index="2s"> 
+								"I have a complex and noisy model which doesn't provide an explicit likelihood"
+								<br> $ \Rightarrow $ learn the posterior directly from simulations !
+							</div>
+						</div>
+					</div>
+					
+				</section>
+				
+				<section>
+					<div class="block">
+						<div class="block-title">
+							Goals of today's talk
+						</div>
+						<div class="block-content">
+							<ul>
+								<li>Give details our SBI strategy</li>
+								<li>Go beyond the challenge with <b class="alert">higher-order statistics</b></li>
+								<li>Provide <b class="alert">statistically robust</b> results</li>		
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						The true SBI situation here
+					</div>
+					<div class="container">
+					
+						<div class="col">
+							<img src="assets/implicitprior_SBIscheme.png" style="height: 400px;">
+						</div>
+						<div class="col">
+							<ul>
+								<li> $ x_{HI} $ is an output of the simulation: we do not directly sample it</li>
+								<li class="fragment" data-fragment-index="1"> Prior on $ x_{HI} $ is <b class="alert">implicit</b> and <b class="alert">non-trivial</b></li>
+								<li class="fragment" data-fragment-index="2"> <b class="alert"> Direct neural posterior estimation </b> [Papamakarios+18] is the way to go ! </li>
+							</ul>
+							<div class="fragment" data-fragment-index="2"> 
+								\[\begin{aligned}
+									p(x_{HI} | P_{2D}) &amp; \propto p(x_{HI}) p(P_{2D} | x_{HI}) \\  &amp; \propto q_\phi (x_{HI} | P_{2D}) 
+								\end{aligned} \]
+							</div>
+							<ul>
+								<li style="font-style: italic;" class="fragment" data-fragment-index="3"> We are model-dependent on both the prior and the likelihood</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Making the training set
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						3 selected reference scenarios
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Always more statistics !
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						SBI methods
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Can you trust me ?
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Results: Individual test scenarios
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Results: global comparison
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Results: the relative strength of each statistic.
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Thanks for your attention !
+					</div>
+				</section>
+
+				
 			</div>
 		</div>
+
+		<style>
+			.reveal .block {
+				background-color: #191919;
+				margin-left: 20px;
+				margin-right: 20px;
+				text-align: left;
+				padding-bottom: 0.1em;
+			}
+
+			.reveal .block-title {
+				background-color: #333333;
+				padding: 8px 35px 8px 14px;
+				color: #FFAA7F;
+				font-weight: bold;
+			}
+
+			.reveal .block-content {
+				padding: 8px 35px 8px 14px;
+			}
+
+			.reveal .slide-title {
+				border-left: 5px solid white;
+				text-align: left;
+				margin-left: 20px;
+				padding-left: 20px;
+			}
+
+			.reveal .alert {
+				color: #FFAA7F;
+				font-weight: bold;
+			}
+
+			.reveal .inverted {
+				filter: invert(100%);
+			}
+		</style>
 
 		<script src="reveal.js/dist/reveal.js"></script>
 		<script src="reveal.js/plugin/notes/notes.js"></script>

@@ -1,3 +1,6 @@
 [submodule "SKACHWinter2026_CDMPIKAN/reveal.js"]
 	path = SKACHWinter2026_CDMPIKAN/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "SKACHWinter2026_SEarCH/reveal.js"]
+	path = SKACHWinter2026_SEarCH/reveal.js
+	url = https://github.com/EiffL/reveal.js.git

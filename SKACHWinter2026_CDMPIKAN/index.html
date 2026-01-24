@@ -170,7 +170,7 @@
 							<div class="fragment">
 							PDE
 							<ul>
-								<li><b class="alert">Numerical integration</b> allows to calculate $\delta(x)$, then $\nabla_x \phi$</li>
+								<li><b class="alert">Numerical integration</b> allows to calculate $\nabla_x \phi$</li>
 								<li><b class="alert">Auto-diff</b> provides access to the remaining term of the PDE (velocity and acceleration)</li>
 							</ul>
 							</div>
@@ -193,7 +193,7 @@
 					<ul>
 						<li>Sharp features in acceleration due to the shell-crossings.</li>
 						<li>Our first attempts with MLPs failed to captures these.</li>
-						<li class="fragment">We also tested more complexe activation functions.</li>
+						<li class="fragment">We also tested more complex activation functions.</li>
 						<li class="fragment">We need an architecture that provides <b class="alert">high flexibility down to the 2nd derivative</b> of the network output</li>
 					</ul>
 				</section>
@@ -202,7 +202,7 @@
 					<br>
 					<ul>
 						<li>The <b class="alert">Kolmogorov-Arnold representation theorem</b>: any multivariate function can be approximated by a combination of (many) univariate functions</li>
-						<li>Allows an efficient parametrization of complex functions</li>
+						<li>Allows an efficient parametrization of the target functions</li>
 					</ul>
 					<br>
 					<div class="container fragment fade-up">
@@ -217,7 +217,7 @@
 							<div>Kolmogorov-Arnold Network</div> 
 							<img src="assets/scheme_kan.png" style="height:150px">
 							<br>
-							Nodes are combination of 3rd-order B-splines
+							Edges are combination of 3rd-order B-splines
 						</div>
 					</div>
 				</section>

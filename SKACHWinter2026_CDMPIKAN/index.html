@@ -18,23 +18,30 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
+				<section data-background-image="assets/Lago_di_Lugano_at_Sunset_cropped_2.jpg">
 					<div>
-						<h2>
-							Simulating Cold Dark Matter with Physics-Informed Kolmogorov-Arnold Networks
-							<br>
+						
+						<br>
+						<div class="title" style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.5);">
+							<h2>
+								Simulating Cold Dark Matter with Physics-Informed Kolmogorov-Arnold Networks
+							</h2>
+							<h4>
+								SKACH Winter Days, CSCS, Lugano, January 2026
+							</h4>
+						</div>
 						<br>
 						<br>
 						<br>
-						</h2>
-						<h4>
-							SKACH Winter Days, CSCS, Lugano, January 2026
-						</h4>
+						<br>
+						<br>
+						<br>
 					</div>
 					
-					<div> Nicolas Cerardi</div>
-					<div>with Emma Tolley & Ashutosh Mishra</div>
-					<br>
+					<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.5);">
+						<h3> Nicolas Cerardi</h3>
+						<div>with Emma Tolley & Ashutosh Mishra</div>
+					</div>
 					<div class="container">
 						<div class="col">
 							<img src="assets/logo_epfl.png" class="plain" height="50"></img>
@@ -43,6 +50,7 @@
 							<img src="assets/Logo_SKACH.png" class="plain" height="70"></img>
 						</div>
 					</div>
+					
 				</section>
 				
 				<section>
@@ -226,7 +234,7 @@
 								</div>
 								<div class="block-content">
 									<ul>
-										<li>We use a [8, 12, 8, 1] KAN architecture (~4500 parameters).</li>
+										<li>We use a [8, 12, 8, 1] KAN architecture (~4500 parameters)</li>
 										<li>We employ independent KANs on consecutive time chunks</li>
 									</ul>
 									$$ x(q,\tau) = q + \textcolor{cyan}{\zeta_0} 

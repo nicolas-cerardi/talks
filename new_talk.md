@@ -8,8 +8,19 @@ cp -a template/ new_talk/ && cd new_talk/
 ```
 
 2. Add reveal.js
+
+If you nead the `darkenergy` theme:
+```
+git submodule add https://github.com/EiffL/reveal.js.git
+```
+
+Else:
 ```
 git submodule add https://github.com/hakimel/reveal.js.git
+```
+
+Then update it and copy the files needed to start your own `index.html`
+```
 cd reveal.js
 git submodule update --init --recursive
 cd ..

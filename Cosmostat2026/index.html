@@ -18,30 +18,785 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>
-                    <section>
-                        Slide 2.1
-                    </section>
-                    <section>
-                        Slide 2.2
-                    </section>
-					<section>
-                        Slide 2.3
-                    </section>
-                </section>
-				<section>
-					<section>
-						<h2>The Vlasov  Equation</h2>
-						\[ \begin{equation}
-							\frac{\partial f}{\partial t} + v \cdot \nabla_x f + a \cdot \nabla_v f = 0
-						\end{equation} \]
-					</section>
-					<section data-markdown>
-						<h2>With Markdown</h2>
-						$$ J(\theta_0,\theta_1) = \sum_{i=0} $$
-					</section>
+				<section data-background-image="assets/vouasson_2025.jpeg">
+					<div>
+						
+						<br>
+						<div class="title" style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.5);">
+							<h2>
+								What can ML tools and simulations do for cosmology ?
+							</h2>
+							<h4>
+								(Or what keeps me busy in Switzerland)
+							</h4>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+					</div>
+					
+					<div><!--div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.5);"-->
+					<h3> Nicolas Cerardi</h3>
+						<!-- div>with Emma Tolley & Ashutosh Mishra</div-->
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/logo_epfl.png" class="plain" height="50"></img>
+						</div>
+						<div class="col">
+							<img src="assets/Logo_SKACH.png" class="plain" height="70"></img>
+						</div>
+					</div>
+					
 				</section>
+				
+				<section>
+					<div class="container"> 
+						<div class="col">
+							<img src="assets/fields_evolution.gif" style="width:100%">
+						</div>
+						<div class="col fragment fade-up">
+							<div class="block">
+								<div class="block-title">
+									The dynamics of CDM
+								</div>
+								<div class="block-content">
+									<ul>
+										<li>Cold Dark Matter obeys the Cosmological <b class="alert">Vlasov Poisson equations</b>:</li>
+										$$ \frac{\partial f}{\partial t} + \vec{v} \cdot \vec{\nabla}_x f - \vec{\nabla}_x \Phi \cdot \frac{\partial f}{\partial \vec{v}} = 0 $$
+										$$ \nabla^2_x \Phi = 4\pi G a^2 \bar{\rho}(\tau) \delta(\vec{x}, \tau) $$
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</section>
+				<section>
+					<h3 class="slide-title">1D CDM simulation</h3>
+					<div class="container"> 
+						<div class="col">
+							Phase-space distribution <br>
+							<img src="assets/pres_1DNbodyvelocity.png" style="width:100%">
+						</div>
+						<div class="col">
+							<br>
+							
+								
+							<ul>
+								<li> Cold DM occupies a <b class="alert">1D submanifold</b> in the 1+1D phase-space</li>		
+								<li> <b class="alert">Multi-stream</b> flow after shell-crossing</li>								
+							</ul>
+								
+							
+						</div>
+					</div>
+					<div class="container fragment fade-up">
+						<div class="col">
+							Density <br>
+							<img src="assets/pres_1DNbodydensity.png" style="width:100%">
+						</div>
+						<div class="col">
+							<br>
+							
+							<ul>
+								<li> <b class="alert">Singularities</b> arise at shell-crossing locations</li>	
+								<li> They affect the CDM dynamics (Poisson equation)</li>						
+							</ul>
+							
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="block">
+						<div class="block-title">
+							Routes to CDM simulations
+						</div>
+						<div class="block-content">
+							<ul>
+								<li> N-body codes employ particles instead of a fluid</li>
+								<li> This leads to <b class="alert">discreteness errors</b> (2-body interactions)</li>
+								
+							</ul>
+							<br>
+							<br>
+							<div class="fragment"><b class="alert"> Can we find an alternative to N-body simulations ?</b></div>
+							<br>
+							<div class="fragment">
+								Since CDM occupies a low-dimensional submanifold, we can completely describe the dynamics using the <b class="alert">displacement field</b>  $\zeta(q,\tau)$: 
+								$$ x(q,\tau) = q + \zeta(q,\tau) $$		
+							</div>
+							<div class="fragment">
+								With the equation of motion:
+								$$ \frac{\partial^2 \zeta}{\partial \tau^2} 
+								+ \frac{3}{2\tau} \frac{\partial \zeta}{\partial \tau}
+								= - \frac{3}{2\tau} \frac{\partial \phi}{\partial x}$$
+							</div>
+							<div class="fragment alert">
+								Can a neural network learn the solution ?
+							</div>
+
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</h3>
+					<br>
+					<div class="block">
+						<div class="block-title">
+							PINNs: simulations seen as an optimisation problem
+						</div>
+						<div class="block-content">
+							<ul>
+								<li>Use a neural network to learn the solution of a PDE</li>
+								<li>Network optimisation is guided by the physical constraints (PDE + boundary)</li>
+								<li>Fully <b class="alert">unsupervised</b> $\Longrightarrow$  independent from N-body</li>
+								<li>Provides a <b class="alert">continuous representation</b> of the solution, not just particles !</b></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="PINN" class="slide-title"> Physics Informed Neural Networks (PINNs)</h3>
+					<div class="container">
+						<div class="col">
+							<img src="assets/network.png" style="width:100%">
+						</div>
+						<div class="col">
+
+							<div class="fragment">
+							PDE
+							<ul>
+								<li><b class="alert">Numerical integration</b> allows to calculate $\nabla_x \phi$</li>
+								<li><b class="alert">Auto-diff</b> provides access to the remaining term of the PDE (velocity and acceleration)</li>
+							</ul>
+							</div>
+							<br>
+							<div class="fragment">
+								Boundary 
+								<ul>
+									<li>Initial conditions given from the <b class="alert">Zel'dovich Approximation</b></li>
+									<li>Boundary conditions set to 0</li>
+								</ul>
+							</div>
+									
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 class="slide-title">Which neural architecture can we use ?</h3>
+					<br>
+					<img src="assets/pres_1DNbodyacc.png" style="width: 50%;">
+					<ul>
+						<li>Sharp features in acceleration due to the shell-crossings.</li>
+						<li>Our first attempts with MLPs failed to captures these.</li>
+						<li class="fragment">We also tested more complex activation functions.</li>
+						<li class="fragment">We need an architecture that provides <b class="alert">high flexibility down to the 2nd derivative</b> of the network output</li>
+					</ul>
+				</section>
+				<section>
+					<h3 class="slide-title"> Kolmogorov-Arnold Networks (KANs)</h3>
+					<br>
+					<ul>
+						<li>The <b class="alert">Kolmogorov-Arnold representation theorem</b>: any multivariate function can be approximated by a combination of (many) flexible univariate functions</li>
+						<li>Allows an efficient parameterization of the target function</li>
+					</ul>
+					<br>
+					<div class="container fragment fade-up">
+						<div class="col">
+							<div>Regular MLP</div>
+							<img src="assets/scheme_mlp.png" style="height:150px">
+							<br>
+							<b class="alert">[Liu+25]</b>
+							
+						</div>
+						<div class="col">
+							<div>Kolmogorov-Arnold Network</div> 
+							<img src="assets/scheme_kan.png" style="height:150px">
+							<br>
+							Edges are combination of 3rd-order B-splines
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 class="slide-title"> $\Rightarrow$ Physics-Informed KANs (PIKANs!)</h3>
+					<div class="container">
+						<div class="col">
+							<img src="assets/network.png" style="width:100%">
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-title">
+									PIKAN implementation
+								</div>
+								<div class="block-content">
+									<ul>
+										<li>We use a [8, 12, 8, 1] KAN architecture (~4500 parameters)</li>
+										<li>We employ independent KANs on consecutive time chunks</li>
+									</ul>
+									$$ x(q,\tau) = q + \textcolor{cyan}{\zeta_0} 
+										+ \sum_{i=1}^{k-1} \textcolor{orange}{\zeta_i}(q, \tau_{end,i}) + \textcolor{green}{\zeta_k}(q,\tau)$$
+										
+									<div class="fragment fade-up">
+										<ul>
+											<li> <b style="color: cyan;">$ \zeta_0 $</b> is the Zel'dovich approximation</li>
+											<li> <b style="color: orange;">$ \zeta_i $</b> are the KANs trained on previous chunks</li>
+											<li> <b style="color: green;">$ \zeta_k $</b> is the KAN operating at $\tau$</li>
+										</ul>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</section>
+				
+				<section>
+					<h3 class="slite-title">Results</h3>
+				</section>
+
+
+				<section data-auto-animate>
+					<h3 class="slide-title">Results : Phase-space</h3>
+					<img src="assets/phase_space_pde2_310725.svg" style="width:60%">
+					<br>
+					<div class="fragment">A very good visual agreement, up to 6 shell-crossings !</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Results : displacement, velocity and acceleration</h3>
+					<img src="assets/residuals_xvacc_pde2_140825.svg" style="width:90%">
+					<br>
+					<div> Errors w.r.t a high resolution N-body simulation</div>
+					<div class="fragment">Error is less than 2% on the displacement</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Results : density profiles</h3>
+					<div class="container"> 
+						<div class="col">
+							<img src="assets/profile_pde2_041225b.svg" style="width:90%">
+						</div>
+						<div class="col">
+							
+						<ul>
+							<li>Density profiles are in good agreement</li>
+							<li class="fragment">In the core, N-body profiles are noisy</li>
+							<li class="fragment">The PIKAN provides a smoother solution (too much?)</li>
+						</ul>
+						</div>
+					</div>
+					
+					<br>
+				</section>
+
+				<section>
+					<div class="block">
+						<div class="block-title">
+							Caveats
+						</div>
+						<div class="block-content">
+							<ul>
+								<li class="fragment">Training time is quite long (several hours per time chunk on a single GPU)</li>
+								<li class="fragment">While the learnt representation is defined continuously, we still need to sample points for the numerical integration of $ \nabla_x\phi $</li>
+								<!-- li class="fragment"> As $ \tau $ increases, the target field gets more complex (more shell crossings), but the architecture is fixed</li -->
+								<li class="fragment"> (for now a 1D single halo collapse)</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">What else can we do with such a tool ?</h3>
+					<br>
+					<ul>
+						<li>Unlike a N-body sim that advances timestep per timestep, in the PINN framework the optimisation is performed <b class="alert">simultaneously over time</b>.</li>
+						<li>$\Rightarrow$ We can set the "initial conditions" at any $\tau$</li>
+					</ul>
+				</section>
+				<section>
+					<h3 class="slide-title">Results : Backward simulation</h3>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li>Test case: reverse time through 2 shell crossings.</li>
+								<li>Start from high-resolution N-body data at $\tau_{end}$, optimise to retrieve the underlying initial conditions. </li>
+							</ul>
+						</div>
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/phase_space_reverse_zvacc_070825.svg" style="width:80%">
+							<br>
+							Input: $ (\zeta, \dot{\zeta}, \ddot{\zeta})$
+						</div>
+						<div class="col">
+							<img src="assets/phase_space_reverse_zvdens_070825.svg" style="width:80%">
+							<br>
+							Input: $ (\zeta, \dot{\zeta}, \delta(x))$
+						</div>
+					</div>
+					
+				</section>
+				<section>
+					<h3 class="slide-title">Thanks for your attention !</h3>
+					<br>
+					<div class="container">
+						<div class="col">
+							<img src="assets/pikan_and_nbody.gif" style="width:100%">
+							<div style="font-size: 20px;"> [Cerardi, Tolley and Mishra, MNRAS, 2025] </div>
+							<a href="https://arxiv.org/abs/2512.11795v1">
+								<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2512.11795-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+							</a>
+							<a href="https://github.com/nicolas-cerardi/cdm-pikan">
+								<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fcdm--pikan-181717?logo=github"
+									class="plain"
+									style="height:20px; vertical-align:middle;">
+							</a>
+							<div style="font-size: 20px;"><a href="https://nicolas-cerardi.github.io/talks/SKACHWinter2026_CDMPIKAN">nicolas-cerardi.github.io/talks/SKACHWinter2026_CDMPIKAN</a></div>
+						</div>
+						<div class="col">
+							<div class="block">
+								<div class="block-title">
+									Takeaways
+								</div>
+								<div class="block-content">
+									<ul>
+										<li>We presented a new method to simulate CDM, <b class="alert">independent from N-body simulations.</b></li>
+										<li class="fragment">PIKANs allows a <b class="alert">continuous and differentiable</b> modelling of the dynamics.</li>
+										<li class="fragment">It is possible to run the simulation backward to <b class="alert">retrieve the initial conditions.</b></li>
+										<li class="fragment">Future work: higher dimensions, complex ICs...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+
+				</section>
+
+				<section data-background-image="assets/SKALow-Sunset.jpg">
+					<div>
+						<br>
+						<h2>
+							Implicit inference of the reionization history with higher-order statistics of the 21-cm signal
+						</h2>
+						<h4>
+							SKACH Winter Days, CSCS, Lugano, January 2026
+						</h4>
+					</div>
+					
+					<br>
+					<br>
+					<br>
+					<br>
+					<h3>Nicolas Cerardi</h3>
+					<div>On behalf of the <b class="alert">SEarCH</b> team: Sambit Giri, Michele Bianco, Davide Piras, Emmanuel de Salis, Massimo de Santis, Merve Selcuk-Simsek, Philipp Denzel, Kelley Hess, Carmen Toribio, Franz Kirsten & Hatem Ghorbel </div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/logo_epfl.png" class="plain" height="50"></img>
+						</div>
+						<div class="col">
+							<img src="assets/logo_Search.png" class="plain" height="160"></img>
+						</div>
+						<div class="col">
+							<img src="assets/Logo_SKACH.png" class="plain" height="80"></img>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						If you missed the last semester of SEarCH...
+					</div>
+					<br>
+					<div class="container">
+						<div class="col">
+							<ul>
+								<li> Participated to the <b class="alert">SKA Data Challenge 3b: Inference</b></li>
+								<li> Goal: infer the <b class="alert">neutral fraction</b> $ \bar{x}_{\rm HI} $ in SKA-Low mocks at three different $ z $ to constrain the Epoch of Reionisation </li>
+							</ul>
+							<img src="assets/EoR_ESA.png" style="height: 300px;">
+						</div>
+						<div class="col">
+							<img src="assets/SDC3b_pipeline.png" style="height: 450px;">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						How did we tackle this problem ?
+					</div>
+					<br>
+					<div class="container">
+						
+						<div class="col">
+							<div class="block">
+								<div class="block-title">
+									Our strategy
+								</div>
+								<div class="block-content">
+									<ol>
+										<li>
+											Created a large dataset of ~16000 SKA-Low mocks
+											<ul>
+												<li> Included instrumental noise but no foregrounds</li>
+											</ul>
+										</li> 
+										<br>
+										<li>
+											Trained 2 independent DL approaches
+											<ul>
+												<li> Regression task on $ \bar{x}_{\rm HI} $ with deep CNNs <br>
+													<div style="font-size: 20px;">[De Salis+25]
+													<a href="https://arxiv.org/abs/2509.22018">
+														<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2509.22018-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+													</a>
+													</div>
+												</li>
+												<li class="fragment fade-up" data-fragment-index="1"> Bayesian inference with <b class="alert">Simulation-based Inference (SBI)</b></li>
+											</ul>
+										</li>
+									</ol>
+								</div>
+							</div>
+							
+							
+						</div>
+						<div class="col">
+							<img src="assets/base_SBI_scheme.png" class="fragment fade-up" data-fragment-index="1" style="height: 400px;">
+							<div style="font-size: 18px;" class="fragment fade-up" data-fragment-index="2s"> 
+								"I have a complex and noisy model which doesn't provide an explicit likelihood"
+								<br> $ \Rightarrow $ learn the posterior directly from simulations !
+							</div>
+						</div>
+					</div>
+					
+				</section>
+				
+				<section>
+					<div class="slide-title">
+						Our results at SDC3b
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/Rankings_SDC3b_PS2.png" style="height: 400px">
+						</div>
+						<div class="col">
+							<img src="assets/figure_SDC3b_teamcomp_PS2.jpg" style="height: 220px">
+							<ul>
+								<li> Obtained great results on the PS2 data 🎉 </li>
+							</ul>
+						</div>
+						
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Our results at SDC3b
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/Rankings_SDC3b_PS1.png" style="height: 400px">
+						</div>
+						<div class="col fragment fade-up">
+							<ul>
+								<li> But not ranked on the PS1 data </li>
+							</ul>
+							<img data-src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTB3NHV4YnlyMDA4eTU2dnFqbnNydTZmM25tdDNiZ2gzMTRmajBvYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aTskHEUdgCQAXde/giphy.gif" style="height: 220px;">
+						</div>
+						
+					</div>
+					
+				</section>
+
+				<section>
+					<div class="block">
+						<div class="block-title">
+							Goals of today's talk
+						</div>
+						<div class="block-content">
+							<ul>
+								<li>Go beyond the data challenge with <b class="alert">higher-order statistics</b></li>
+								<li>Give details on our SBI strategy</li>
+								<li>Provide <b class="alert">statistically robust</b> results</li>		
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Extending our modelling
+					</div>
+					<div class="container">
+						<div class="col">
+							<ul>
+								<li> Rejecting extreme reionisation cases </li>
+								<li> Dataset expanded x2 with more noise realisation applied on the mocks  </li>
+								<li> Test the noise-level dependence: <b class="alert">100h</b> and <b class="alert">1000h</b> SKA-Low noise considered </li>
+								<li> <b class="alert">More statistics</b> computed from the mocks </li>
+								
+							</ul>
+						</div>
+						<div class="col">
+							<img src="assets/EoR_history_3models.svg" style="height: 400px;">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						More statistics !
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/SEarCHSBI_pipeline.png" style="height: 450px;">
+							<br> 
+							We compute several kinds of statistics $ t $ from the 21cm cubes
+						</div>
+						<div class="col">
+							
+							<div class="alert fragment fade-up" data-fragment-index="1"> 2pt statistics </div>
+							<div class="container fragment fade-up" data-fragment-index="1">
+								
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_1DPS.png" style="height: 150px;">
+									<div> 1D Power Spectrum </div>
+								</div>
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_2DPS.png" style="height: 150px;">
+									<div> 2D Power Spectrum </div>
+								</div>
+							</div>
+							<br>
+
+							<div class="alert fragment fade-up" data-fragment-index="2"> Higher-order statistics </div>
+
+							<div class="container fragment fade-up" data-fragment-index="2">
+								
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_bispec.png" style="height: 150px;">
+									<div> Bispectrum (equilateral & squeezed)</div>
+								</div>
+								<div class="col" style="font-size: 15px;">
+									<img src="assets/sample_betti.png" style="height: 150px;">
+									<div> Betti numbers (topological invariant) <br> </div>
+								</div>
+							</div>
+							<br>
+							<b class="fragment fade-up" data-fragment-index="3"> + combinations of these metrics </b>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						The true SBI situation here
+					</div>
+					<div class="container">
+					
+						<div class="col">
+							<img src="assets/implicitprior_SBIscheme.png" style="height: 400px;">
+						</div>
+						<div class="col">
+							<ul>
+								<li> $ \bar{x}_{\rm HI} $ is an output of the simulation: we do not directly sample it</li>
+								<li class="fragment" data-fragment-index="1"> Prior on $ \bar{x}_{\rm HI} $ is <b class="alert">implicit</b> and <b class="alert">non-trivial</b></li>
+								<li class="fragment" data-fragment-index="2"> <b class="alert"> Direct neural posterior estimation </b> is the way to go ! </li>
+							</ul>
+							<div class="fragment" data-fragment-index="2"> 
+								\[\begin{aligned}
+									p(\bar{x}_{\rm HI} | t) &amp; \propto p(\bar{x}_{\rm HI}) p(t | \bar{x}_{\rm HI}) \\  &amp; \propto q_\phi (\bar{x}_{\rm HI} | t) 
+								\end{aligned} \]
+							</div>
+							<ul>
+								<li style="font-style: italic;" class="fragment" data-fragment-index="3"> We are model-dependent on both the prior and the likelihood</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!--section>
+					<div class="slide-title">
+						Making the training set
+					</div>
+					<div class="container">
+						<div class="col">
+							<ul>
+								<li> Our model varies 6 input astrophysical parameters </li>
+								<li> Reject the extreme cases $ \Rightarrow $ simplifies the $ \bar{x}_{\rm HI} $ prior </li>
+								<li> Two levels of SKA Low-like noise: 100h & 1000h</li>
+							</ul>
+						</div>
+						<div class="col">
+							<img class="inverted" src="assets/params_distrib_SBISEarCH.png" style="height: 450px;">
+						</div>
+
+					</div>
+					
+				</section-->
+
+
+				<section>
+					<div class="slide-title">
+						SBI methodology
+					</div>
+					<br>
+					
+					<div class="container">
+						<div class="col" style="flex: 0.245;"></div>
+						<div class="col" style="text-align: left;">
+							We apply <b class="alert">Variational Mutual Information Maximization</b> (VMIM, Jeffrey+20) to learn $ p(\bar{x}_{\rm HI} | t) $ by:
+							<ul>
+								<li class="fragment"> Compressing the stacked statistics $ [t_1, t_2, t_3] $ into a 3D vector $ y $ </li>
+								<li class="fragment"> Maximizing the mutual information between $ y $ and $ \bar{x}_{HI} $ </li>
+							</ul>
+						</div>
+						<div class="col" style="flex: 0.2;"> </div>
+					</div>
+					<br>
+					<img src="assets/scheme_VMIM.png" style="height: 200px;">
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Can you trust me ?
+					</div>
+					<div class="container">
+						<div class="col">
+							<div style="font-style: italic; text-align: left;"> SBI studies should always provide robust statistical validation of the learnt posteriors </div>
+							<ul>
+								<li class="fragment" data-fragment-index="1"> For each case we train 20+ models to check for the stability of our approach </li>
+								<li class="fragment" data-fragment-index="2"> We systematically perform coverage tests and select the best model for each case </li>
+							</ul>
+						</div>
+						<div class="col">
+							<div class="r-stack">
+								<div class="fragment current-visible" data-fragment-index="1">
+									<img class="plain" src="assets/many_posteriors_PS2Dtrainings.png" style="height: 300px;">
+								</div>
+								<div class="fragment" data-fragment-index="2">
+									<img class="plain" src="assets/TARPS_examples_051112.svg" style="height: 400px;">
+								</div>
+							</div>
+							
+							<div style="font-size: 18px;" class="fragment" data-fragment-index="2"> Test of Accuracy with Random Points (TARP) runs on the validation set for different cases </div>
+						</div>
+					</div>
+				</section>
+
+				<!--section>
+					<div class="slide-title">
+						3 reference scenarios
+					</div>
+					<div class="container">
+						<div class="col">
+							<ul>
+								<li> We select from the test set 3 reference mocks: `Early`, `Fiducial` and `Late` </li>
+							</ul>
+						</div>
+						<div class="col">
+							<img src="assets/EoR_history_3models.svg" style="height: 400px;">
+						</div>
+					</div>
+				</section-->
+
+				<section class="inverted" data-background="#000">
+					<div class="slide-title">
+						Results: Individual test scenarios
+					</div>
+					<div class="container">
+						<div class="col">
+							<img class="inverted" src="assets/contours_mock_15089_100vs1000.svg" style="height: 400px;">
+						</div>
+						<div class="col r-stack">
+							<div class="fragment current-visible">
+								<img class="inverted" src="assets/contours_mock_15089.svg" style="height: 400px;">
+							</div>
+							<div class="fragment">
+								<img class="inverted" src="assets/contours_mock_15442.svg" style="height: 400px;">
+							</div>
+							
+						</div>
+					</div>
+				</section>
+					
+				<section class="inverted" data-background="#000">
+					<div class="slide-title">
+						Good, but these are individual posteriors. What about the big picture ?
+					</div>
+				</section>
+
+				<section class="inverted" data-background="#000">
+					<div class="slide-title">
+						Results: global trends
+					</div>
+					<img class="inverted" src="assets/FoMs_diff_stats_071125.svg" style="height: 400px;">
+					<ul>
+						<li> $ \sigma(\bar{x}_{\rm HI}) $ decreases by ~40% from 100h to 1000h (but very statistic dependent)</li>
+						<li> PS2D + higher order stats: $ \sigma(\bar{x}_{\rm HI}) $ decreases  by ~60% at 100h and ~40% at 1000h</li>
+					</ul>
+				</section>
+
+				<section class="inverted" data-background="#000">
+					<div class="slide-title">
+						Results: the relative strength of each statistic
+					</div>
+					<br>
+					<img class="inverted" src="assets/FoM_ratio_with_xHI.svg" style="height: 250px;">
+					<ul>
+						<li class="fragment"> Betti numbers are more informative towards the end of EoR </li>
+						<li class="fragment"> Power spectrum is more constraining in the early EoR </li>
+						<li class="fragment"> Bispectrum mildly contributes to early EoR constraints</li>
+					</ul>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Thanks for your attention !
+					</div>
+					<br>
+
+					<div style="text-align: left;">
+						<div class="block">
+							<div class="block-title">
+								Conclusions
+							</div>
+							<div class="block-content">
+								<ul>
+									<li>Based on our work for SDC3b, we investigated the reionisation history through several summary statistics</li>
+									<li> We employed 2-pt statistics (1D and 2D power spectra) with higher order statistics (bispectrum and Betti numpers) </li>
+									<li> We applied a SBI framework to infer parameters from these statistics </li>
+									<li> Betti numbers (alone and combined with others) are particularly promising </li>
+									<li> We also identify different regimes of relevance for each statistic </li>
+								</ul>
+								<br>
+
+								<div style="font-size: 20px; text-align: left ;">
+									[Cerardi et al., submitted to MNRAS, 2025]
+									<a href="https://arxiv.org/abs/2511.11568">
+										<img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2511.11568-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+									</a>
+								</div>
+								<div style="font-size: 20px; text-align: left ;"> <a href="https://nicolas-cerardi.github.io/talks/SKACHWinter2026_SEarCH">nicolas-cerardi.github.io/talks/SKACHWinter2026_SEarCH</a></div>
+							</div>
+						</div>
+					</div>
+					
+
+					
+
+				</section>
+
 			</div>
 		</div>
 

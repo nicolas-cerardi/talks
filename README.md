@@ -3,3 +3,7 @@
  - SKACH Winter meeting 2026, Lugano: [Simulating Cold Dark Matter with Physics-Informed Kolmogorov-Arnold Networks](https://nicolas-cerardi.github.io/talks/SKACHWinter2026_CDMPIKAN/)
 
  - SKACH Winter meeting 2026, Lugano: [Implicit inference of the reionization history with higher-order statistics of the 21-cm signal](https://nicolas-cerardi.github.io/talks/SKACHWinter2026_SEarCH/)
+
+ - Cosmostat Journal Club, CEA Saclay: [ML tools and simulations for cosmology](https://nicolas-cerardi.github.io/talks/Cosmostat2026)
+
+ - Cosmology In The Alps 2026, Les Diiablerets: [Implicit inference of the reionization history with higher-order statistics of the 21-cm signal](https://nicolas-cerardi.github.io/talks/CosmoInTheAlps2026)

@@ -10,3 +10,6 @@
 [submodule "CosmoInTheAlps2026/reveal.js"]
 	path = CosmoInTheAlps2026/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "AIAstroEPFL2026/reveal.js"]
+	path = AIAstroEPFL2026/reveal.js
+	url = https://github.com/EiffL/reveal.js.git

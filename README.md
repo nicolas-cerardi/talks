@@ -6,4 +6,6 @@
 
  - Cosmostat Journal Club, CEA Saclay: [ML tools and simulations for cosmology](https://nicolas-cerardi.github.io/talks/Cosmostat2026)
 
- - Cosmology In The Alps 2026, Les Diiablerets: [Implicit inference of the reionization history with higher-order statistics of the 21-cm signal](https://nicolas-cerardi.github.io/talks/CosmoInTheAlps2026)
+ - Cosmology In The Alps 2026, Les Diablerets: [Implicit inference of the reionization history with higher-order statistics of the 21-cm signal](https://nicolas-cerardi.github.io/talks/CosmoInTheAlps2026)
+
+ - AI + Astronomy, EPFL: [Simulating Cold Dark Matter with Physics-Informed Kolmogorov-Arnold Networks](https://nicolas-cerardi.github.io/talks/AIAstroEPFL2026)

@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Template Presentation</title>
+		<title>Simulating CDM with Physics-Informed Kolmogorov-Arnold Networks</title>
 		<meta name="description" content="Simulating CDM with Physics-Informed Kolmogorov-Arnold Networks">
 		<meta name="author" content="Nicolas Cerardi">
 
@@ -27,7 +27,7 @@
 								Simulating Cold Dark Matter with Physics-Informed Kolmogorov-Arnold Networks
 							</h2>
 							<h4>
-								AI+Astronomy workshop, EPFL, Lausanne, April 2026
+								AI+Astronomy, EPFL, Lausanne, April 2026
 							</h4>
 						</div>
 						<br>
@@ -57,12 +57,27 @@
 					<h3 class="slide-title">Cosmological simulations</h3>
 					<div class="container"> 
 						<div class="col">
-							<img src="assets//Uchuu_simulation.png" style="width:100%">
-							<div style="font-style: italic;">Uchuu simulation [Ishiyama+21]</div>
+							<div class="r-stack">
+								<div>
+									<img src="assets/Uchuu_simulation_LSS.png" style="width:93%">
+								</div>
+								<div class="fragment">
+									<img src="assets/Uchuu_simulation_halo.png" style="width:93%">
+								</div>
+								<div class="fragment">
+									<img src="assets/Uchuu_simulation_evolution.png" style="width:100%">
+								</div>
+							</div>
+							
+							<div style="font-style: italic; font-size: 15px;">Uchuu simulation [Ishiyama+21]</div>
 						</div>
-						<div class="col">
-							<div class="alert" style="text-align: left; padding: 40px;"> Ingredients </div>
+						<div class="col fragment">
 							<img src="assets/Simulation_ingredients.png" style="width:70%">
+							<div style="text-align: left; padding-left: 10%;">
+								$N = 12800^3$ <br>
+								$m_p = 3.27 \times 10^8 \ h^{-1} {\rm M}_\odot$ <br>
+								$\epsilon = 4.27 \ h^{-1} {\rm kpc}$ <br>
+							</div>
 						</div>
 				</section>
 				

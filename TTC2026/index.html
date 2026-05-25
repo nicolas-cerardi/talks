@@ -176,7 +176,7 @@
 						</div>
 					</div>
 				</section>
-				<section>
+				<!--section>
 					<h3 class="slide-title">Which neural architecture can we use ?</h3>
 					<br>
 					<img src="assets/pres_1DNbodyacc.png" style="width: 50%;">
@@ -186,7 +186,7 @@
 						<li class="fragment">We also tested more complex activation functions.</li>
 						<li class="fragment">We need an architecture that provides <b class="alert">high flexibility down to the 2nd derivative</b> of the network output</li>
 					</ul>
-				</section>
+				</section-->
 				<section>
 					<h3 class="slide-title"> Kolmogorov-Arnold Networks (KANs)</h3>
 					<br>
@@ -264,7 +264,7 @@
 					<div class="fragment">Error is less than 2% on the displacement</div>
 				</section>
 
-				<section class="inverted" data-background="#000">
+				<!--section class="inverted" data-background="#000">
 					<h3 class="slide-title">Results : density profiles</h3>
 					<div class="container"> 
 						<div class="col">
@@ -281,33 +281,8 @@
 					</div>
 					
 					<br>
-				</section>
-
-				<section>
-					<div class="block">
-						<div class="block-title">
-							Caveats
-						</div>
-						<div class="block-content">
-							<ul>
-								<li class="fragment">Training time is quite long (several hours per time chunk on a single GPU)</li>
-								<li class="fragment">While the learnt representation is defined continuously, we still need to sample points for the numerical integration of $ \nabla_x\phi $</li>
-								<!-- li class="fragment"> As $ \tau $ increases, the target field gets more complex (more shell crossings), but the architecture is fixed</li -->
-								<li class="fragment"> (for now a 1D single halo collapse)</li>
-							</ul>
-						</div>
-					</div>
-				</section>
-
-				<section>
-					<h3 class="slide-title">What else can we do with such a tool ?</h3>
-					<br>
-					<ul>
-						<li>Unlike a N-body sim that advances timestep per timestep, in the PINN framework the optimisation is performed <b class="alert">simultaneously over time</b>.</li>
-						<li>$\Rightarrow$ We can set the "initial conditions" at any $\tau$</li>
-					</ul>
-				</section>
-				<section class="inverted" data-background="#000">
+				</section-->
+								<section class="inverted" data-background="#000">
 					<h3 class="slide-title">Results : Backward simulation</h3>
 					<div>
 						<div>
@@ -329,8 +304,33 @@
 							Input: $ (\zeta, \dot{\zeta}, \delta(x))$
 						</div>
 					</div>
-					
 				</section>
+
+				<section>
+					<div class="block">
+						<div class="block-title">
+							Caveats
+						</div>
+						<div class="block-content">
+							<ul>
+								<li class="fragment">Training time is quite long (several hours per time chunk on a single GPU)</li>
+								<li class="fragment">While the learnt representation is defined continuously, we still need to sample points for the numerical integration of $ \nabla_x\phi $</li>
+								<!-- li class="fragment"> As $ \tau $ increases, the target field gets more complex (more shell crossings), but the architecture is fixed</li -->
+								<li class="fragment"> (for now a 1D single halo collapse)</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!--section>
+					<h3 class="slide-title">What else can we do with such a tool ?</h3>
+					<br>
+					<ul>
+						<li>Unlike a N-body sim that advances timestep per timestep, in the PINN framework the optimisation is performed <b class="alert">simultaneously over time</b>.</li>
+						<li>$\Rightarrow$ We can set the "initial conditions" at any $\tau$</li>
+					</ul>
+				</section-->
+
 				<section>
 					<br>
 					<div class="container">
@@ -452,21 +452,31 @@
 						Radio signals from satellites
 					</div>
 					<br>
-					<ul>
-						<li> Intended emissions (in ITU-R allocated bands)</li>
-						<li> Reflection from sunlight and terrestrial sources</li>
-						<li> Unintended Electromagnetic Radiation (UEMR)</li>
-					</ul>
-					<div class="r-stack">
-						<div class="fragment fade-out" data-fragment-index="0">
-							<img src="assets/Starlink_Zhang_Lofar.png" style="width: 70%;">
-							<div> [Zhang+25] Bright UEMR continuum from Starlinks in the 30 - 78 MHz range</div>
+					<div class="container">
+						<div class="col" style="flex: 0.5;">
+							<ul>
+								<li> Intended emissions (in ITU-R allocated bands) </li>
+								<br>
+								<li> Reflection from sunlight and terrestrial sources </li>
+								<br>
+								<li> Unintended Electromagnetic Radiation (UEMR) </li>
+							</ul>
 						</div>
-						<div class="fragment current-visible" data-fragment-index="0">
-							<img src="assets/Starlinks_DiVruno.png" style="width: 70%;">
-							<div> [Di Vruno+23] Both spectral lines and broad band features in the 110 - 190 MHz range</div>
+						<div class="col" style="flex: 1.0;">
+							<div class="r-stack">
+								<div class="fragment fade-in-then-out" data-fragment-index="0">
+									<img src="assets/Starlink_Zhang_Lofar.png" style="width: 100%;">
+									<div> [Zhang+25] Bright UEMR continuum from Starlinks in the 30 - 78 MHz range</div>
+								</div>
+								<div class="fragment current-visible" data-fragment-index="1">
+									<img src="assets/Starlinks_DiVruno.png" style="width: 100%;">
+									<div> [Di Vruno+23] Both spectral lines and broad band features in the 110 - 190 MHz range</div>
+								</div>
+							</div>
 						</div>
 					</div>
+					
+					
 				</section>
 
 				<section>
@@ -516,6 +526,27 @@
 
 				<section class="inverted" data-background="#000">
 					<div class="slide-title">
+						Different context, same problem !
+					</div>
+					<br>
+					<div class="container">
+						<div class="col">
+							<div> Single satellite orbit</div>
+							<img src="assets/orbit_animation.gif" style="width: 100%;" class="inverted">
+						</div>
+						<div class="col fragment">
+							<div> Phase space trajectory</div>
+							<img src="assets/latitude_phase_space.gif" style="width: 100%;" class="inverted">
+						</div>
+						<div class="col fragment">
+							<div> Probability density</div>
+							<img src="assets/latitude_density.png" style="width: 87%;" class="inverted">
+						</div>
+					</div>
+				</section>
+
+				<section class="inverted" data-background="#000">
+					<div class="slide-title">
 						Satellite density maps
 					</div>
 					<br>
@@ -552,12 +583,19 @@
 				<section class="inverted" data-background="#000">
 					<div class="slide-title">
 						Assumptions of the current analytical model
+						
 					</div>
+					<br>
 					<div class="container">
 						<div class="col">
+							Straight trajectories in the FoV
+							<br>
+							<br>
+							<br>
+							<img src="assets/straight_trajectories.png" style="width: 75%;" class="inverted">
 						</div>
-						<div class="col">
-							A 0-order approximation within the FoV
+						<div class="col fragment">
+							0-order approximation of density within the FoV
 							<div class="r-stack">
 								<div class="current-visible">
 									<img src="assets/skymap_analytical_density.png" style="width: 100%;" class="inverted">
@@ -569,6 +607,77 @@
 							
 						</div>
 					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Code release
+					</div>
+					<div class="container">
+						<div class="col">
+							<div class="block">
+								<div class="block-title">
+									Analytical-Satsky
+								</div>
+								<div class="block-content">
+									<ul>
+										<li>Public repo: <a href="https://github.com/nicolas-cerardi/Analytical-Satsky">github.com/nicolas-cerardi/Analytical-Satsky</a></li>
+										<li class="fragment">v1: simple model as in [Bassa et al. 2022, Cerardi et al. 2026]. Allows fast reproducibility of the paper results</li>
+										<li class="fragment">v2 (in progress): dropping simplifications for large FoVs, and fake satellite samplings</li>
+										<li class="fragment">Users and feedback welcome !</li>
+									</ul>
+								</div>
+							</div>
+							
+						</div>
+						<div class="col">
+							<img src="assets/satsky_repo_view.png" style="width: 90%;">
+						</div>
+						
+					</div>
+
+					
+				</section>
+
+				<section>
+					<div class="slide-title">
+						Code release
+					</div>
+					<div class="container">
+						<div class="col" style="flex: 1.5;">
+							<pre><code data-trim class="language-python" data-line-numbers="4|6-11|13-21|23">
+							>>> from analytical_satsky import load_constellation, MultiShellObs
+							>>> from analytical_satsky import plot_sky_map
+							>>>
+							>>> shells_df = load_constellation("starlink_filing2")
+							>>>
+							>>> ndec, nra = 90*10, 360*5
+							>>> target_dec = np.linspace(-90, 90, ndec, endpoint=False)*u.deg
+							>>> target_lha = np.linspace(0, 360, nra, endpoint=False)*u.deg
+							>>> skamid = EarthLocation.of_site("SKA-Mid")
+							>>> Lfov = 17.8*u.deg
+							>>> texp = 3600*u.s
+							>>> 
+							>>> multi_shell_model = MultiShellObs(
+							>>>		skamid, 
+							>>>		shells_df, 
+							>>>		target_dec, 
+							>>>		target_lha, 
+							>>>		Lfov, 
+							>>>		texp
+							>>> )
+							>>> total_dens = multi_shell_model.total_nsats
+							>>>
+							>>> plot_sky_map(total_dens, skamid, target_lha, target_dec)
+							</code></pre>
+						</div>
+						<div class="col fragment">
+							<img src="assets/sky_map_skamid.png" style="width: 90%;">
+						</div>
+						
+					</div>
+
+					
 				</section>
 
 				
@@ -669,6 +778,7 @@
 			}
 		</style>
 
+		<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" />
 		<script src="reveal.js/dist/reveal.js"></script>
 		<script src="reveal.js/plugin/notes/notes.js"></script>
 		<script src="reveal.js/plugin/markdown/markdown.js"></script>

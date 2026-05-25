@@ -13,3 +13,6 @@
 [submodule "AIAstroEPFL2026/reveal.js"]
 	path = AIAstroEPFL2026/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "TTC2026/reveal.js"]
+	path = TTC2026/reveal.js
+	url = https://github.com/EiffL/reveal.js.git

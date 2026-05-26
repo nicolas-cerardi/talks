@@ -257,31 +257,36 @@
 				</section>
 
 				<section class="inverted" data-background="#000">
-					<h3 class="slide-title">Results : displacement, velocity and acceleration</h3>
+					<section>
+						<h3 class="slide-title">Results : displacement, velocity and acceleration</h3>
 					<img src="assets/residuals_xvacc_pde2_140825.svg" style="width:100%" class="inverted">
 					<br>
 					<div> Errors w.r.t a high resolution N-body simulation</div>
 					<div class="fragment">Error is less than 2% on the displacement</div>
+
+					</section>
+					<section data-background="#000">
+						<h3 class="slide-title">Results : density profiles</h3>
+						<div class="container"> 
+							<div class="col">
+								<img src="assets/profile_pde2_041225b.svg" style="width:100%" class="inverted">
+							</div>
+							<div class="col">
+								
+							<ul>
+								<li>Density profiles are in good agreement</li>
+								<li class="fragment">In the core, N-body profiles are noisy</li>
+								<li class="fragment">The PIKAN provides a smoother solution (too much?)</li>
+							</ul>
+							</div>
+						</div>
+						
+						<br>
+					</section>
+					
 				</section>
 
-				<!--section class="inverted" data-background="#000">
-					<h3 class="slide-title">Results : density profiles</h3>
-					<div class="container"> 
-						<div class="col">
-							<img src="assets/profile_pde2_041225b.svg" style="width:100%" class="inverted">
-						</div>
-						<div class="col">
-							
-						<ul>
-							<li>Density profiles are in good agreement</li>
-							<li class="fragment">In the core, N-body profiles are noisy</li>
-							<li class="fragment">The PIKAN provides a smoother solution (too much?)</li>
-						</ul>
-						</div>
-					</div>
-					
-					<br>
-				</section-->
+				
 								<section class="inverted" data-background="#000">
 					<h3 class="slide-title">Results : Backward simulation</h3>
 					<div>
@@ -568,6 +573,9 @@
 				</section>
 
 				<section class="inverted" data-background="#000">
+					<section>
+
+					
 					<div class="slide-title">
 						The exposition of the SKA-Low to mega constellations
 					</div>
@@ -578,6 +586,33 @@
 						<li>Flagging will not be an option -> <b class="alert inverted"> RFI subtraction</b></li>
 						<li>More predictions for SKA-Low and Mid in [Cerardi et al., 2604.22694]</li>
 					</ul>
+					</section>
+					<section> 
+						<div class="slide-title">
+							Trajectory-based Subtraction and Calibration
+						</div>
+						<br>
+						
+						<div class="container">
+							<div class="col">
+								<div style="text-align: left;">
+									<b class="alert inverted">TABASCAL</b> (Chris Finlay): forward model of telescope + RFI + astronomical sources. Joint fit at the visibility level.
+									<br>
+									<ul>
+										<li>Improves Gain calibration</li>
+										<li>Enable RFI modelling and subtraction</li>
+									</ul>
+								</div>
+								<img src="assets/tabascal_101.png" style="width: 100%;" class="inverted">
+
+							</div>
+							<div class="col">
+								<img src="assets/tabascal_meerkat.png" style="width: 100%;" class="inverted">
+								<br>
+								RFI subtraction vs flagging on MeerKAT simulated observations, in [Finlay+2025].
+							</div>
+						</div>
+					</section>
 
 				</section>
 
@@ -620,9 +655,9 @@
 							<div class="block">
 								<div class="block-content">
 									<ul>
-										<li> $ \rho_{\rm sat} A_{\rm FoV} \rightarrow \int_{\rm FoV} d\delta d\alpha \rho_{\rm sat} \cos\delta  $ </li>
+										<li> Satellites in the initial FoV <br> $ \rho_{\rm sat} A_{\rm FoV} \rightarrow \int_{\rm FoV} d\delta d\alpha \rho_{\rm sat} \cos\delta  $ </li>
 										<br>
-										<li> $ \rho_{\rm sat} L_{\rm FoV} \omega_{\rm sat} t_{\rm exp} \rightarrow \int dt \vec{d\theta}.\vec{V_{\rm sat}} \rho_{\rm sat} R_{\rm FoV} $ </li>
+										<li> Satellites entering the FoV <br> $ \rho_{\rm sat} L_{\rm FoV} \omega_{\rm sat} t_{\rm exp} \rightarrow \int dt \vec{d\theta}.\vec{V_{\rm sat}} \rho_{\rm sat} R_{\rm FoV} $ </li>
 									</ul>
 								</div>
 							</div>
@@ -728,32 +763,7 @@
 				</section>
 				
 
-				<!--section class="inverted" data-background="#000"> 
-					<div class="slide-title">
-						Trajectory-based Subtraction and Calibration
-					</div>
-					<br>
-					
-					<div class="container">
-						<div class="col">
-							<div style="text-align: left;">
-								<b class="alert inverted">TABASCAL</b> (Chris Finlay): forward model of telescope + RFI + astronomical sources. Joint fit at the visibility level.
-								<br>
-								<ul>
-									<li>Improves Gain calibration</li>
-									<li>Enable RFI modelling and subtraction</li>
-								</ul>
-							</div>
-							<img src="assets/tabascal_101.png" style="width: 100%;" class="inverted">
-
-						</div>
-						<div class="col">
-							<img src="assets/tabascal_meerkat.png" style="width: 100%;" class="inverted">
-							<br>
-							RFI subtraction vs flagging on MeerKAT simulated observations, in [Finlay+2025].
-						</div>
-					</div>
-				</section-->
+				
 				<section class="inverted" data-background="#000">
 					<div class="slide-title">
 						Satellites constellations - Takeaways

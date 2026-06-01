@@ -192,8 +192,60 @@
 						</div>
 					</section>
 				</section>
+
 				<section>
-					
+					<h3 class="slide-title">
+						Extending the model towards RFI forecasts
+					</h3>
+					<div class="container">
+						<div class="col">
+							
+							<ul>
+								<li> Requires an integral model, dropping small FoV assumptions from [Bassa et al. 2022]</li>
+								<li> Generate a catalogue of fake satellites with <b class="alert">realistic</b> trajectories</li>
+								<li> Assume transmitted power (e.g. from [di Vruno et al. 2023]) </li>
+								<li> Interfaced with an interferometric simulator (e.g. Chris Finlay's tab-sim). </li>
+							</ul>
+						</div>
+						<div class="col fragment">
+							<div class=" r-stack">
+								<div class="fragment fade-in-then-out">
+									<img src="assets/satellite_catalogue.png" style="width: 70%;">
+								</div>
+							    <div class="fragment current-visible">
+									<img src="assets/sat_sampling_in_fov.png" style="width: 80%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						Take-aways
+					</h3>
+					<div class="block">
+						<div class="block-content">
+							<ul>
+								<li> Satellites will transit in the SKA-Low beam for large parts of the observation time, up to 100% around 100 MHz and below, see the A&A Letter [Cerardi et al. 2026].</li>
+								<li> The code is <b class="alert">fast, public and reusable </b> for other telescopes and observations. </li>
+								<li> Currently extending the model <b class="alert">towards actual RFI level forecasts. </b></li>
+							</ul>
+
+							<div style="text-align: center;">
+								<a href="https://arxiv.org/abs/2604.22694v1">
+									<img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2604.22694-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+								</a>
+								<a href="https://github.com/nicolas-cerardi/analytical-satsky">
+									<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fanalytical--satsky-181717?logo=github"
+										class="plain"
+										style="height:20px; vertical-align:middle;">
+								</a>
+							</div>
+							
+							
+						</div>
+					</div>
 				</section>
 			</div>
 		</div>

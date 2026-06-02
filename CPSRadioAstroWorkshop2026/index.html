@@ -169,7 +169,7 @@
 								>>> target_dec = np.linspace(-90, 90, ndec, endpoint=False)*u.deg
 								>>> target_lha = np.linspace(0, 360, nra, endpoint=False)*u.deg
 								>>> skamid = EarthLocation.of_site("SKA-Mid")
-								>>> Lfov = 17.8*u.deg
+								>>> Lfov = 2.0*u.deg
 								>>> texp = 3600*u.s
 								>>> 
 								>>> multi_shell_model = MultiShellObs(
@@ -227,7 +227,8 @@
 					<div class="block">
 						<div class="block-content">
 							<ul>
-								<li> Satellites will transit in the SKA-Low beam for large parts of the observation time, up to 100% around 100 MHz and below, see the A&A Letter [Cerardi et al. 2026].</li>
+								<li> Analytical modelling of satellite constellations is a powerful predictive tool, providing evidence for advocacy. </li>
+								<li> Satellites will transit in the SKA-Low beam for large parts of the observation time, see the A&A Letter [Cerardi et al. 2026].</li>
 								<li> The code is <b class="alert">fast, public and reusable </b> for other telescopes and observations. </li>
 								<li> Currently extending the model <b class="alert">towards actual RFI level forecasts. </b></li>
 							</ul>

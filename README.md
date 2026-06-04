@@ -11,3 +11,5 @@
  - AI + Astronomy, EPFL: [Simulating Cold Dark Matter with Physics-Informed Kolmogorov-Arnold Networks](https://nicolas-cerardi.github.io/talks/AIAstroEPFL2026)
 
  - Tea Time Chat, EPFL: [TTC 2026](https://nicolas-cerardi.github.io/talks/TTC2026/)
+
+ - CPS Radio Astronomy Workshop: [Analytical modelling of the impact from satellite constellations on the SKAO 2026](https://nicolas-cerardi.github.io/talks/CPSRadioAstroWorkshop2026/)

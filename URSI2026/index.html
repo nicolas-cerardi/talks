@@ -1,0 +1,427 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Template Presentation</title>
+		<meta name="description" content="A basic template to start a new talk">
+		<meta name="author" content="Nicolas Cerardi">
+
+		<link rel="stylesheet" href="reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="reveal.js/dist/theme/brightenergy.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="assets/SKALow-Sunset.jpg">
+					<div class="inverted">
+						<br>
+						<h2>
+							Impact of Radio Frequency Interference from future satellite mega constellations on the SKA Observatory
+						</h2>
+						<h4>
+							URSI GASS, Krakow, 19/08/26
+						</h4>
+					</div>
+					
+					<br>
+					<br>
+					<br>
+					<br>
+					<h3 class="inverted">Nicolas Cerardi</h3>
+					<div class="inverted">With Emma Tolley, Federico di Vruno and Chris Finlay</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/logo_epfl.png" class="plain" height="50"></img>
+						</div>
+						<div class="col">
+							<img src="assets/Logo_SKACH.png" class="plain" height="80"></img>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<div class="slide-title">
+						We are not alone... on the radio spectrum !
+					</div>
+					<img src="assets/Radiospectrum_allocations.png" style="width: 100%;">
+				</section>
+
+				<section>
+					<div class="slide-title">
+						RFI from satellite constellations
+					</div>
+					<br>
+					<div class="container">
+						<div class="col" style="flex: 0.5;">
+							<ul>
+								<li> Intended emissions (in ITU-R allocated bands) </li>
+								<br>
+								<li> Reflection from sunlight and terrestrial sources </li>
+								<br>
+								<li> Unintended Electromagnetic Radiation (UEMR) </li>
+							</ul>
+						</div>
+						<div class="col" style="flex: 1.0;">
+							<div class="r-stack">
+								<div class="fragment fade-in-then-out" data-fragment-index="0">
+									<img src="assets/Starlink_Zhang_Lofar.png" style="width: 100%;">
+									<div> [Zhang+25] Bright UEMR continuum from Starlinks in the 30 - 78 MHz range</div>
+								</div>
+								<div class="fragment current-visible" data-fragment-index="1">
+									<img src="assets/Starlinks_DiVruno.png" style="width: 100%;">
+									<div> [Di Vruno+23] Both spectral lines and broad band features in the 110 - 190 MHz range</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+
+				<section>
+					<div class="slide-title">
+						Starlinks in LEO now
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/satellitemap_view.png" style="width: 100%;">
+							<br>
+							10000+ satellites (<a href="https://satellitemap.space/vis/constellation/starlink" style="font-size: 24px;">satellitemap.space</a>)
+						</div>
+						<div class="col fragment" style="font-size: 20px;">
+							<table>
+								<caption>
+									All starlink shells at completion
+								</caption>
+								<thead>
+									<tr>
+									<th scope="col">i [deg]</th>
+									<th scope="col">h [km]</th>
+									<th scope="col">n</th>
+									</tr>
+								</thead>
+								<tbody>
+								<tr><td>53.0</td><td>550</td><td>1584</td></tr>
+								<tr><td>53.2</td><td>540</td><td>1584</td></tr>
+								<tr><td>70.0</td><td>570</td><td>720</td></tr>
+								<tr><td>97.6</td><td>560</td><td>520</td></tr>
+								<tr><td>53.0</td><td>340</td><td>5280</td></tr>
+								<tr><td>46.0</td><td>345</td><td>5280</td></tr>
+								<tr><td>38.0</td><td>350</td><td>5280</td></tr>
+								<tr><td>96.9</td><td>360</td><td>3600</td></tr>
+								<tr><td>53.0</td><td>525</td><td>3360</td></tr>
+								<tr><td>43.0</td><td>530</td><td>3360</td></tr>
+								<tr><td>33.0</td><td>535</td><td>3360</td></tr>
+								<tr><td>148.0</td><td>604</td><td>144</td></tr>
+								<tr><td>115.7</td><td>614</td><td>324</td></tr>
+							</tbody>
+							</table>
+
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<section>
+						<h3 class="slide-title">
+							Can we forecast the future observing conditions of the SKAO?
+						</h3>
+						<br>
+						<div class="container">
+							
+							<div class="col">
+								<div class="block">
+									<div class="block-title">
+										In 5-10 years
+									</div>
+									<div class="block-content">
+										<table>
+								
+											<thead>
+												<tr>
+												<th scope="col">Constellation</th>
+												<th scope="col"> $ N_{\rm sat} $</th>
+												</tr>
+											</thead>
+											<tbody>
+											<tr><td>Starlink</td><td>35000</td></tr>
+											<tr><td>Oneweb</td><td>720</td></tr>
+											<tr><td>GuoWang</td><td>13000</td></tr>
+											<tr><td>QianFan</td><td>1200</td></tr>
+											<tr><td>Leo</td><td>3000</td></tr>
+										</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<ul>
+									<li class="fragment"> About 50 000 satellite trajectories to simulate...</li>
+									<li class="fragment"> Instead, we can model the density of satellite in the sky with an analytical model from [Bassa, Hainaut & Galadi-Enriquez, 2022]</li>
+									<li class="fragment"> We adapted this model and applied it to the SKAO in [Cerardi, Tolley, di Vruno, 2026]</li>
+									<li class="fragment"> So far, a geometrical prediction only (no forecast of the received power)</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3 class="slide-title">
+							Principle of the analytical modelling
+						</h3>
+						<br>
+						<div class="container">
+							<div class="col">
+								<div> Single satellite orbit</div>
+								<img src="assets/orbit_animation.gif" style="width: 100%;">
+							</div>
+							<div class="col fragment">
+								<div> Phase space trajectory</div>
+								<img src="assets/latitude_phase_space.gif" style="width: 100%;">
+							</div>
+							<div class="col fragment">
+								<div> Probability density</div>
+								<img src="assets/latitude_density.png" style="width: 87%;">
+							</div>
+						</div>
+						<ul>
+							<li class="fragment"> Sum up static probability densities of each shell rather than simulating individual satellite trajectories</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						Forecasting the satellite occupancy in SKAO observations
+					</h3>
+					<div class="container">
+						<div class="col">
+							<img src="assets/skymap_skalow5.png" style="width: 90%;">
+
+							<ul>
+								<li>At its latitude, SKA-Low is covered by most orbital shells</li>
+							</ul>
+						</div>
+						<div class="col">
+							<div class="r-stack">
+								<div class="fragment fade-in-then-out">
+									<img src="assets/satdens_lofar.png" style="width: 72%;">
+									<br>
+									<br>
+									<br>
+								</div>
+								<div class="fragment current-visible">
+									<img src="assets/skymap_skamid5.png" style="width: 90%;">
+									<br>
+									<br>
+									<br>
+								</div>
+							</div>
+						</div>
+
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						The exposition of the SKA-Low to mega constellations
+					</h3>
+					<div class="container">
+						<div class="col">
+							<img src="assets/maps_contours_decfreq_SKALow_rev1.png" style="width: 70%;">
+						</div>
+						<div class="col">
+							<ul>
+								<li>Significantly exposed to satellites at all frequencies, up to 100% below 100 MHz</li>
+								<li>Flagging will not be an option -> <b class="alert"> RFI subtraction</b></li>
+								<li>More predictions for SKA-Low and Mid in [Cerardi et al., 2604.22694]</li>
+							</ul>
+						</div>
+				</section>
+				
+				<section>
+					<h3 class="slide-title">
+						Code release
+					</h3>
+					<div class="container">
+						<div class="col">
+							<div class="block">
+								<div class="block-title">
+									Analytical-Satsky
+								</div>
+								<div class="block-content">
+									<ul>
+										<li>Public repo: <a href="https://github.com/nicolas-cerardi/Analytical-Satsky">github.com/nicolas-cerardi/Analytical-Satsky</a></li>
+										<li class="fragment">v1: simple model as in [Bassa et al. 2022, Cerardi et al. 2026]. Allows fast reproducibility of the paper results</li>
+										<li class="fragment">v2 (in progress): dropping simplifications for large FoVs, and fake satellite sampling</li>
+										<li class="fragment alert">Users and feedback welcome !</li>
+									</ul>
+								</div>
+							</div>
+								
+						</div>
+						<div class="col">
+							<img src="assets/satsky_repo_view.png" style="width: 90%;">
+						</div>
+						
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						Code release
+					</h3>
+					<div class="container">
+						<div class="col" style="flex: 1.5;">
+							<pre><code data-trim class="language-python" data-line-numbers="1-23|4|6-11|13-21|23">
+							>>> from analytical_satsky import load_constellation, MultiShellObs
+							>>> from analytical_satsky import plot_sky_map
+							>>>
+							>>> shells_df = load_constellation("starlink_filing2")
+							>>>
+							>>> ndec, nra = 90*10, 360*5
+							>>> target_dec = np.linspace(-90, 90, ndec, endpoint=False)*u.deg
+							>>> target_lha = np.linspace(0, 360, nra, endpoint=False)*u.deg
+							>>> skamid = EarthLocation.of_site("SKA-Mid")
+							>>> Lfov = 2.0*u.deg
+							>>> texp = 3600*u.s
+							>>> 
+							>>> multi_shell_model = MultiShellObs(
+							>>>		skamid, 
+							>>>		shells_df, 
+							>>>		target_dec, 
+							>>>		target_lha, 
+							>>>		Lfov, 
+							>>>		texp
+							>>> )
+							>>> total_dens = multi_shell_model.total_nsats
+							>>>
+							>>> plot_sky_map(total_dens, skamid, target_lha, target_dec)
+							</code></pre>
+						</div>
+						<div class="col fragment">
+							<img src="assets/sky_map_skamid.png" style="width: 90%;">
+						</div>
+						
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						Alright, but occupancy does not necessarily mean interference...
+					</h3>
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						Predicting the RFI impact on the power spectrum
+					</h3>
+					<img src="assets/pipeline_rfiskalow.png" style="width: 100%;">
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						Sampling the future density of satellites
+					</h3>
+					<div class="container">
+						<div class="col">
+							<br>
+							<br>
+							<img src="assets/satellite_catalogue.png" style="width: 70%;">
+							<ul>
+								<li> Use the analytical density to spawn satellites at the FoV edges</li>
+								<li> Generate a catalogue of fake satellites with <b class="alert">realistic</b> trajectories</li>
+							</ul>
+						</div>
+						<div class="col fragment">
+							<img src="assets/sat_sampling_in_fov.png" style="width: 60%;">
+							<ul>
+								<li> Can be interfaced with an observation simulator</li>
+							</ul>
+						</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">
+						Spectral properties of the satellite sample
+					</h3>
+
+					<div class="r-stack">	
+						<div class="fragment fade-in-then-out">
+							<img src="assets/Starlinks_DiVruno_highlight161MHz.png" style="width: 80%;">
+						</div>
+						<div class="fragment currently-visible">
+							<img src="assets/Starlinks_DiVruno_brightest_reduction.png" style="width: 50%;">
+						</div>
+					</div>
+
+
+
+				</section>
+				
+
+			</div>
+		</div>
+
+        <style>
+			.reveal .block {
+				background-color: #FAFAFA;
+				margin-left: 20px;
+				margin-right: 20px;
+				text-align: left;
+				padding-bottom: 0.1em;
+			}
+
+			.reveal .block-title {
+				background-color: #F0F4F8;
+				padding: 8px 35px 8px 14px;
+				color: #3A86FF;
+				font-weight: bold;
+			}
+
+			.reveal .block-content {
+				padding: 8px 35px 8px 14px;
+			}
+
+			.reveal .slide-title {
+				border-left: 5px solid black;
+				text-align: left;
+				margin-left: 20px;
+				padding-left: 20px;
+			}
+
+			.reveal .alert {
+				color: #3A86FF;
+				font-weight: bold;
+			}
+
+			.reveal .inverted {
+				filter: invert(100%);
+			}
+		</style>
+
+		<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" />
+		<script src="reveal.js/dist/reveal.js"></script>
+		<script src="reveal.js/plugin/notes/notes.js"></script>
+		<script src="reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="reveal.js/plugin/math/math.js"></script>
+
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+				slideNumber: true,
+			});
+		</script>
+	</body>
+</html>

@@ -19,3 +19,6 @@
 [submodule "CPSRadioAstroWorkshop2026/reveal.js"]
 	path = CPSRadioAstroWorkshop2026/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "URSI2026/reveal.js"]
+	path = URSI2026/reveal.js
+	url = https://github.com/EiffL/reveal.js.git

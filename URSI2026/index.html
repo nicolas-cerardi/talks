@@ -46,16 +46,16 @@
 				</section>
 
 				<section>
-					<div class="slide-title">
+					<h3 class="slide-title">
 						We are not alone... on the radio spectrum !
-					</div>
+					</h3>
 					<img src="assets/Radiospectrum_allocations.png" style="width: 100%;">
 				</section>
 
 				<section>
-					<div class="slide-title">
+					<h3 class="slide-title">
 						RFI from satellite constellations
-					</div>
+					</h3>
 					<br>
 					<div class="container">
 						<div class="col" style="flex: 0.5;">
@@ -84,9 +84,9 @@
 
 
 				<section>
-					<div class="slide-title">
+					<h3 class="slide-title">
 						Starlinks in LEO now
-					</div>
+					</h3>
 					<div class="container">
 						<div class="col">
 							<img src="assets/satellitemap_view.png" style="width: 100%;">
@@ -237,8 +237,8 @@
 						<div class="col">
 							<ul>
 								<li>Significantly exposed to satellites at all frequencies, up to 100% below 100 MHz</li>
-								<li>Flagging will not be an option -> <b class="alert"> RFI subtraction</b></li>
-								<li>More predictions for SKA-Low and Mid in [Cerardi et al., 2604.22694]</li>
+								<li>Flagging will not be a viable mitigation, ither techniques must be developed, e.g. <b class="alert"> RFI subtraction</b> (see Chris Finlay's Tabascal)</li>
+								<li>More predictions for SKA-Low and Mid in [Cerardi, Tolley, di Vruno, 2026]</li>
 							</ul>
 						</div>
 				</section>
@@ -320,7 +320,13 @@
 					<h3 class="slide-title">
 						Predicting the RFI impact on the power spectrum
 					</h3>
-					<img src="assets/pipeline_rfiskalow.png" style="width: 100%;">
+					<div style="text-align: left;"> What would be the impact of <b class="alert">undetected UEMR</b> on an Epoch of Reionization experiment with SKA-Low? </div>
+					<div class="fragment">
+						<img src="assets/pipeline_rfiskalow.png" style="width: 100%;">
+						<div style="text-align: right; font-size: 15px; width: 95%;">[Cerardi+ in prep.]</div>
+					</div>
+					
+					
 				</section>
 
 				<section>
@@ -369,22 +375,60 @@
 					<h3 class="slide-title">
 						Power spectrum of the RFI component
 					</h3>
-					<div class="r-stack">	
-						<div class="fragment fade-in-then-out" data-fragment-index="0">
-							<img src="assets/ps_2d_rfi_01ab.png" style="width: 70%;">
-							
+					<div class="container">
+						<div class="col">
+							<div class="r-stack">	
+								<div class="fragment fade-in-then-out" data-fragment-index="0">
+									<img src="assets/ps_2d_rfi_01ab.png" style="width: 70%;">
+									
+								</div>
+								<div class="fragment currently-visible">
+									<img src="assets/ps_rfi_comparison.png" style="width: 70%;">
+								</div>
+							</div>
 						</div>
-						<div class="fragment currently-visible">
-							<img src="assets/ps_rfi_comparison.png" style="width: 70%;">
+						<div class="col" style="flex: 0.5;">
+							<ul>
+								<li> Excess </li>
+							</ul>
 						</div>
 					</div>
+					
+					
 
 				</section>
 
 				<section>
 					<h3 class="slide-title">
-						Conclusions and Future work
+						Conclusions and future work
 					</h3>
+					<div class="container">
+						<div class="col">
+							<div class="block">
+								<div class="block-title">
+									Take aways
+								</div>
+								<div class="block-content">
+									Forecasts of the SKAO RFI environment with <b class="alert">analytical modelling</b> of satellite constellations
+									<ul>
+										<li>Prediction of the number/rate of satellites crossing the MB. Up to 100% at low frequencies.</li>
+										<li>Estimation of the power spectrum contribution from faint UEMR. Strongest RFI power is found near the EoR window, but decreases with oberving time.</li>
+									</ul>
+
+									<div style="text-align: center;">
+										<a href="https://arxiv.org/abs/2604.22694v1">
+											<img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2604.22694-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
+										</a>
+										<a href="https://github.com/nicolas-cerardi/analytical-satsky">
+											<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fanalytical--satsky-181717?logo=github"
+												class="plain"
+												style="height:20px; vertical-align:middle;">
+										</a>
+									</div>
+								</div>
+						</div>
+					</div>
+							
 					
 				</section>
 				

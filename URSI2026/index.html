@@ -96,7 +96,7 @@
 						<div class="col fragment" style="font-size: 20px;">
 							<table>
 								<caption>
-									All starlink shells at completion
+									All Starlink shells at completion
 								</caption>
 								<thead>
 									<tr>
@@ -339,14 +339,14 @@
 							
 							<img src="assets/sat_sampling_in_fov.png" style="width: 60%;">
 							<ul>
-								<li> Use the analytical density to spawn satellites at the FoV edges</li>
+								<li> Use the analytical density to spawn satellites at the FoV edges.</li>
 							</ul>
 						</div>
 						<div class="col fragment">
 							<br>
 							<img src="assets/satellite_catalogue.png" style="width: 72%;">
 							<ul>
-								<li> Generate a catalogue of fake satellites with <b class="alert">realistic</b> trajectories</li>
+								<li> Generate a catalogue of fake satellites with <b class="alert">realistic</b> trajectories.</li>
 							</ul>
 						</div>
 				</section>
@@ -378,18 +378,20 @@
 					<div class="container">
 						<div class="col">
 							<div class="r-stack">	
-								<div class="fragment fade-in-then-out" data-fragment-index="0">
-									<img src="assets/ps_2d_rfi_01ab.png" style="width: 70%;">
-									
+								<div>
+									<img src="assets/ps_2d_rfi_01ab.png" style="width: 90%;">
 								</div>
-								<div class="fragment currently-visible">
-									<img src="assets/ps_rfi_comparison.png" style="width: 70%;">
+								<div class="fragment currently-visible" data-fragment-index="1">
+									<img src="assets/ps_rfi_comparison.png" style="width: 90%;">
 								</div>
 							</div>
 						</div>
-						<div class="col" style="flex: 0.5;">
+						<div class="col" style="flex: 0.7;">
 							<ul>
-								<li> Excess </li>
+								<li class="fragment" data-fragment-index="0"> Excess power located at small $ k_{\perp} $ and all $ k_{\parallel} $. </li>
+								<li class="fragment" data-fragment-index="0"> Strong line at high $ k_{\parallel} $, possibly from the 200kHz oscillation. </li>
+								<li class="fragment" data-fragment-index="2"> RFI power plateaus at low $ k $. </li>
+								<li class="fragment" data-fragment-index="2"> Overall RFI power decreases with longer observation. </li>
 							</ul>
 						</div>
 					</div>
@@ -402,32 +404,39 @@
 					<h3 class="slide-title">
 						Conclusions and future work
 					</h3>
-					<div class="container">
-						<div class="col">
-							<div class="block">
-								<div class="block-title">
-									Take aways
-								</div>
-								<div class="block-content">
-									Forecasts of the SKAO RFI environment with <b class="alert">analytical modelling</b> of satellite constellations
-									<ul>
-										<li>Prediction of the number/rate of satellites crossing the MB. Up to 100% at low frequencies.</li>
-										<li>Estimation of the power spectrum contribution from faint UEMR. Strongest RFI power is found near the EoR window, but decreases with oberving time.</li>
-									</ul>
-
-									<div style="text-align: center;">
-										<a href="https://arxiv.org/abs/2604.22694v1">
-											<img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2604.22694-B31B1B.svg" class="plain" style="height:20px;vertical-align:middle;" />
-										</a>
-										<a href="https://github.com/nicolas-cerardi/analytical-satsky">
-											<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fanalytical--satsky-181717?logo=github"
-												class="plain"
-												style="height:20px; vertical-align:middle;">
-										</a>
-									</div>
-								</div>
+					
+					<div class="block">
+						<div class="block-title">
+							Take aways
+						</div>
+						<div class="block-content">
+							Forecasts of the SKAO RFI environment with <b class="alert">analytical modelling</b> of satellite constellations
+							<ul>
+								<li>Prediction of the number/rate of satellites crossing the MB. Up to 100% at low frequencies.</li>
+								<li>Estimation of the power spectrum contribution from faint UEMR. Strongest RFI power is found near the EoR window, but decreases with oberving time.</li>
+							</ul>
+							
+							Future work:
+							<br>
+							<ul>
+								<li>Simulations for longer exposures and diverse spectral features.</li>
+								<li>Comparison with noise power.</li>
+							</ul>
+							<div style="text-align: center;">
+								<a href="https://arxiv.org/abs/2604.22694v1">
+									<img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2604.22694-B31B1B.svg" 
+									class="plain" 
+									style="height:24px;vertical-align:middle;" />
+								</a>
+								<a href="https://github.com/nicolas-cerardi/analytical-satsky">
+									<img src="https://img.shields.io/badge/GitHub-nicolas--cerardi%2Fanalytical--satsky-181717?logo=github"
+										class="plain"
+										style="height:24px; vertical-align:middle;">
+								</a>
+							</div>
 						</div>
 					</div>
+
 							
 					
 				</section>

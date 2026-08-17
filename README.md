@@ -13,3 +13,5 @@
  - Tea Time Chat, EPFL: [TTC 2026](https://nicolas-cerardi.github.io/talks/TTC2026/)
 
  - CPS Radio Astronomy Workshop: [Analytical modelling of the impact from satellite constellations on the SKAO 2026](https://nicolas-cerardi.github.io/talks/CPSRadioAstroWorkshop2026/)
+
+ - URSI GASS 2026: [Impact of Radio Frequency Interference from future satellite mega constellations on the SKA Observatory](https://nicolas-cerardi.github.io/talks/URSI2026/)

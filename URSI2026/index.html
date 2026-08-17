@@ -60,22 +60,22 @@
 					<div class="container">
 						<div class="col" style="flex: 0.5;">
 							<ul>
-								<li> Intended emissions (in ITU-R allocated bands) </li>
+								<li> Intended emissions (in ITU-R allocated bands). </li>
 								<br>
-								<li> Reflection from sunlight and terrestrial sources </li>
+								<li> Reflection from sunlight and terrestrial sources. </li>
 								<br>
-								<li> Unintended Electromagnetic Radiation (UEMR) </li>
+								<li> Unintended Electromagnetic Radiation (UEMR). </li>
 							</ul>
 						</div>
 						<div class="col" style="flex: 1.0;">
 							<div class="r-stack">
 								<div class="fragment fade-in-then-out" data-fragment-index="0">
 									<img src="assets/Starlink_Zhang_Lofar.png" style="width: 100%;">
-									<div> [Zhang+25] Bright UEMR continuum from Starlinks in the 30 - 78 MHz range</div>
+									<div> [Zhang+25] Bright UEMR continuum from Starlinks in the 30 - 78 MHz range.</div>
 								</div>
 								<div class="fragment current-visible" data-fragment-index="1">
 									<img src="assets/Starlinks_DiVruno.png" style="width: 100%;">
-									<div> [Di Vruno+23] Both spectral lines and broad band features in the 110 - 190 MHz range</div>
+									<div> [Di Vruno+23] Both spectral lines and broad band features in the 110 - 190 MHz range.</div>
 								</div>
 							</div>
 						</div>
@@ -163,9 +163,9 @@
 							<div class="col">
 								<ul>
 									<li class="fragment"> About 50 000 satellite trajectories to simulate...</li>
-									<li class="fragment"> Instead, we can model the density of satellite in the sky with an analytical model from [Bassa, Hainaut & Galadi-Enriquez, 2022]</li>
-									<li class="fragment"> We adapted this model and applied it to the SKAO in [Cerardi, Tolley, di Vruno, 2026]</li>
-									<li class="fragment"> So far, a geometrical prediction only (no forecast of the received power)</li>
+									<li class="fragment"> Instead, we can model the density of satellite in the sky with an analytical model from [Bassa, Hainaut & Galadi-Enriquez, 2022].</li>
+									<li class="fragment"> We adapted this model and applied it to the SKAO in [Cerardi, Tolley, di Vruno, 2026].</li>
+									<li class="fragment"> So far, a geometrical prediction only (no forecast of the received power).</li>
 								</ul>
 							</div>
 						</div>
@@ -190,7 +190,7 @@
 							</div>
 						</div>
 						<ul>
-							<li class="fragment"> Sum up static probability densities of each shell rather than simulating individual satellite trajectories</li>
+							<li class="fragment"> Sum up static probability densities of each shell rather than simulating individual satellite trajectories.</li>
 						</ul>
 					</section>
 				</section>
@@ -204,7 +204,7 @@
 							<img src="assets/skymap_skalow5.png" style="width: 90%;">
 
 							<ul>
-								<li>At its latitude, SKA-Low is covered by most orbital shells</li>
+								<li>At its latitude, SKA-Low is covered by most orbital shells.</li>
 							</ul>
 						</div>
 						<div class="col">
@@ -232,13 +232,13 @@
 					</h3>
 					<div class="container">
 						<div class="col">
-							<img src="assets/maps_contours_decfreq_SKALow_rev1.png" style="width: 70%;">
+							<img src="assets/maps_contours_decfreq_SKALow_cropped.png" style="width: 80%;">
 						</div>
 						<div class="col">
 							<ul>
-								<li>Significantly exposed to satellites at all frequencies, up to 100% below 100 MHz</li>
-								<li>Flagging will not be a viable mitigation, ither techniques must be developed, e.g. <b class="alert"> RFI subtraction</b> (see Chris Finlay's Tabascal)</li>
-								<li>More predictions for SKA-Low and Mid in [Cerardi, Tolley, di Vruno, 2026]</li>
+								<li>Significantly exposed to satellites at all frequencies, up to 100% below 100 MHz.</li>
+								<li>Flagging will not be a viable mitigation, ither techniques must be developed, e.g. <b class="alert"> RFI subtraction</b> (see Chris Finlay's Tabascal).</li>
+								<li>More predictions for SKA-Low and Mid in [Cerardi, Tolley, di Vruno, 2026].</li>
 							</ul>
 						</div>
 				</section>
@@ -255,10 +255,10 @@
 								</div>
 								<div class="block-content">
 									<ul>
-										<li>Public repo: <a href="https://github.com/nicolas-cerardi/Analytical-Satsky">github.com/nicolas-cerardi/Analytical-Satsky</a></li>
-										<li class="fragment">v1: simple model as in [Bassa et al. 2022, Cerardi et al. 2026]. Allows fast reproduction of the paper results</li>
-										<li class="fragment">v2 (in progress): adapted for large FoVs, and satellite sampling</li>
-										<li class="fragment alert">Users and feedback welcome !</li>
+										<li>Public repo: <a href="https://github.com/nicolas-cerardi/Analytical-Satsky">github.com/nicolas-cerardi/Analytical-Satsky</a>.</li>
+										<li class="fragment">v1: simple model as in [Bassa et al. 2022, Cerardi et al. 2026]. Allows fast reproduction of the paper results.</li>
+										<li class="fragment">v2 (in progress): adapted for large FoVs, and satellite sampling.</li>
+										<li class="fragment alert">Users and feedback welcome!</li>
 									</ul>
 								</div>
 							</div>
@@ -367,7 +367,7 @@
 						</div>
 					</div>
 					<ul>
-						<li class="fragment" data-fragment-index="0">Focus on the 157 - 165 MHz band, 100 kHz resolution</li>
+						<li class="fragment" data-fragment-index="0">Focus on the 157 - 165 MHz band, 100 kHz resolution.</li>
 					</ul>
 				</section>
 
@@ -413,7 +413,7 @@
 							Forecasts of the SKAO RFI environment with <b class="alert">analytical modelling</b> of satellite constellations
 							<ul>
 								<li>Prediction of the number/rate of satellites crossing the MB. Up to 100% at low frequencies.</li>
-								<li>Estimation of the power spectrum contribution from faint UEMR. Strongest RFI power is found near the EoR window, but decreases with oberving time.</li>
+								<li>Estimation of the power spectrum contribution from faint UEMR. Strongest RFI power is found near the EoR window, but decreases with observing time.</li>
 							</ul>
 							
 							Future work:

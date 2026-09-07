@@ -17,3 +17,5 @@
  - URSI GASS 2026, Krakow: [Impact of Radio Frequency Interference from future satellite mega constellations on the SKA Observatory](https://nicolas-cerardi.github.io/talks/URSI2026/)
 
  - Swiss SKA Days 2026, Neuchâtel: [Impact of Radio Frequency Interference from future satellite mega constellations on the SKA Observatory](https://nicolas-cerardi.github.io/talks/SKACHDays2026/)
+
+ - EoR Belgrade 2026, Online: [Impact of Radio Frequency Interference from future satellite mega constellations on the SKA Observatory](https://nicolas-cerardi.github.io/talks/EoRBelgrade2026/)

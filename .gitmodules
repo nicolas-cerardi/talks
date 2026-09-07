@@ -25,3 +25,6 @@
 [submodule "SKACHDays2026/reveal.js"]
 	path = SKACHDays2026/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "EoRBelgrade2026/reveal.js"]
+	path = EoRBelgrade2026/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
